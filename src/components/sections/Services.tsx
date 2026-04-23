@@ -1,0 +1,222 @@
+import { useReveal } from "@/hooks/useReveal";
+
+interface Service {
+  num: string;
+  title: string;
+  subtitle: string;
+  items: string[];
+  closing: string;
+}
+
+const SERVICES: Service[] = [
+  {
+    num: "01",
+    title: "Estrutura digital que converte. Não só encanta.",
+    subtitle:
+      "Página bonita sem estratégia é catálogo. A gente constrói com CRO, copy e identidade visual trabalhando juntos desde o zero.",
+    items: [
+      "Identidade visual alinhada ao posicionamento",
+      "Copy estratégica em cada seção",
+      "Análise de CRO e direcionamento à conversão",
+      "Estrutura técnica para máxima performance",
+      "E-commerces, landing pages, sistemas e portais",
+    ],
+    closing: "O objetivo não é impressionar. É vender.",
+  },
+  {
+    num: "02",
+    title: "Não gerenciamos anúncios. Construímos máquinas de aquisição.",
+    subtitle:
+      "Qualquer agência coloca dinheiro no Meta e chama de estratégia. A gente constrói o sistema inteiro — criativo, audiência, oferta, funil e dado.",
+    items: [
+      "Diagnóstico completo antes de investir R$ 1 em mídia",
+      "Arquitetura de funil por temperatura de audiência",
+      "Criativo com intenção — não só arte bonita",
+      "Gestão ativa de Meta, Google, TikTok e YouTube Ads",
+      "Teste estruturado de ângulos, ofertas e formatos",
+      "Leitura de dado real — não o que o gerenciador quer que tu veja",
+      "Escala com controle — sem queimar verba em audiência saturada",
+    ],
+    closing: "Objetivo de campanha não é 'alcance'. É venda. Sempre foi.",
+  },
+  {
+    num: "03",
+    title: "Enquanto o teu concorrente pensa no mês, a gente já está no próximo trimestre.",
+    subtitle:
+      "Calendário estratégico não é planilha de data comemorativa. É inteligência comercial aplicada — quando atacar, qual oferta, em qual canal, com qual margem.",
+    items: [
+      "Mapeamento de janelas de oportunidade comercial",
+      "Planejamento de ofertas e lançamentos por período",
+      "Alinhamento entre mídia paga, CRM e operação",
+      "Antecipação de sazonalidade com estratégia de margem",
+      "Decisões baseadas em dado — não em intuição",
+    ],
+    closing: "Improvisar em data quente é o erro mais caro que uma marca pode cometer.",
+  },
+  {
+    num: "04",
+    title: "Relatório bonito não paga boleto. Dado real, sim.",
+    subtitle:
+      "A maioria das agências te mostra o que quer que tu veja. A gente mostra o que precisa ser resolvido — mesmo que doa.",
+    items: [
+      "Auditoria completa de métricas e atribuição",
+      "Análise de CRO e comportamento do usuário",
+      "Dashboards que mostram problema, não só número",
+      "ROI real por canal, campanha e produto",
+      "Decisões baseadas em dado — não em achismo",
+    ],
+    closing: "Se tu não sabe onde tá perdendo dinheiro, alguém sabe. E não é tu.",
+  },
+  {
+    num: "05",
+    title: "Tua loja não se gerencia sozinha. E gestor júnior não resolve.",
+    subtitle:
+      "Vitrine, oferta, ficha, banner, precificação — cada detalhe impacta conversão. A gente cuida de tudo como se fosse a nossa loja.",
+    items: [
+      "Gestão de ofertas e precificação estratégica",
+      "Fichas de produto com copy orientada à conversão",
+      "Banners e vitrines alinhados à campanha ativa",
+      "Monitoramento de estoque, margem e giro",
+      "Operação diária com visão estratégica",
+    ],
+    closing: "Loja bagunçada com tráfego caro é dinheiro indo embora pela porta da frente.",
+  },
+  {
+    num: "06",
+    title: "Quem já comprou de ti é teu ativo mais barato. Para de ignorar.",
+    subtitle:
+      "Conquistar cliente novo custa 7x mais do que vender pra quem já conhece a marca. A gente constrói o sistema que faz essa base comprar de novo — e de novo.",
+    items: [
+      "Fluxos de e-mail, WhatsApp e SMS estratégicos",
+      "Segmentação de base por comportamento e LTV",
+      "Recuperação de carrinho e reativação de inativos",
+      "Régua de relacionamento pós-compra",
+      "Aumento de frequência e ticket médio por canal",
+    ],
+    closing: "Retenção não é pós-venda. É receita previsível.",
+  },
+  {
+    num: "07",
+    title: "Processo manual é custo disfarçado de rotina.",
+    subtitle:
+      "Cada hora gasta em tarefa repetitiva é uma hora que não foi gasta em crescimento. A gente mapeia, automatiza e implementa.",
+    items: [
+      "Mapeamento de gargalos operacionais",
+      "Automação de processos comerciais e administrativos",
+      "Agentes de IA para atendimento, qualificação e follow-up",
+      "Integração entre plataformas e sistemas",
+      "Redução real de custo operacional com dado comprovado",
+    ],
+    closing: "R$ 2M+ economizados em folha. 350 mil horas devolvidas. Isso é resultado.",
+  },
+  {
+    num: "08",
+    title: "Estratégia que fica no papel não fatura nada.",
+    subtitle:
+      "A maioria das consultorias entrega 40 páginas e some. A gente fica até funcionar — script, processo, time, funil e resultado.",
+    items: [
+      "Diagnóstico completo da operação comercial atual",
+      "Criação e implementação de scripts de vendas",
+      "Estruturação de funil do primeiro contato ao fechamento",
+      "Treinamento e alinhamento do time comercial",
+      "Definição de metas, métricas e cadência de acompanhamento",
+      "Integração entre marketing, tráfego e comercial",
+    ],
+    closing: "Script bem feito converte 20x mais que atendimento aleatório. Nossos números provam.",
+  },
+];
+
+const ServiceCard = ({ service, index }: { service: Service; index: number }) => {
+  const { ref, visible } = useReveal<HTMLDivElement>({ threshold: 0.2 });
+  return (
+    <article
+      ref={ref}
+      className="group relative bg-background border border-border p-8 md:p-12 transition-all duration-500 hover:bg-[hsl(0_0%_8.5%)] hover:border-l-[3px] hover:border-l-gold"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(80px)",
+        transition: `opacity 0.7s ease ${index * 60}ms, transform 0.8s cubic-bezier(0.22,1,0.36,1) ${index * 60}ms, background 0.3s, border-color 0.3s`,
+      }}
+    >
+      <div
+        className="font-display absolute top-4 right-6 text-[hsl(var(--border-dark))] leading-none select-none pointer-events-none"
+        style={{ fontSize: "clamp(80px, 10vw, 140px)" }}
+        aria-hidden
+      >
+        {service.num}
+      </div>
+
+      <h3 className="font-sora font-semibold text-cream text-2xl md:text-[28px] leading-snug max-w-2xl relative">
+        {service.title}
+      </h3>
+
+      <p className="mt-4 text-cream-dim text-base leading-relaxed max-w-2xl">
+        {service.subtitle}
+      </p>
+
+      <ul className="mt-8 space-y-3">
+        {service.items.map((item, i) => (
+          <li key={i} className="flex gap-3 text-cream/90 text-[15px] leading-relaxed">
+            <span className="text-gold flex-shrink-0 mt-0.5">→</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-8 pt-6 border-t border-border">
+        <p className="font-sora italic text-gold text-base">{service.closing}</p>
+      </div>
+    </article>
+  );
+};
+
+const Services = () => {
+  const { ref, visible } = useReveal<HTMLDivElement>({ threshold: 0.2 });
+
+  return (
+    <section id="servicos" className="relative bg-background py-28 md:py-40">
+      <div className="container">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+          {/* Sticky left title */}
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-32" ref={ref}>
+              <div
+                className="h-px bg-gold mb-6 transition-all duration-700"
+                style={{ width: visible ? 60 : 0 }}
+              />
+              <h2
+                className="font-display text-cream leading-[0.9] transition-all duration-700"
+                style={{
+                  fontSize: "clamp(56px, 7vw, 110px)",
+                  opacity: visible ? 1 : 0,
+                  transform: visible ? "translateY(0)" : "translateY(40px)",
+                }}
+              >
+                MAS COMO<br />A GENTE<br />ENTREGA<br /><span className="text-gold">TUDO ISSO?</span>
+              </h2>
+              <p
+                className="mt-8 text-cream-dim text-base md:text-lg max-w-md leading-relaxed transition-all duration-700 delay-200"
+                style={{
+                  opacity: visible ? 1 : 0,
+                  transform: visible ? "translateY(0)" : "translateY(20px)",
+                }}
+              >
+                Cada resultado que tu viu acima tem um sistema por trás.
+                Aqui estão as peças.
+              </p>
+            </div>
+          </div>
+
+          {/* Right scrolling cards */}
+          <div className="lg:col-span-7 space-y-6">
+            {SERVICES.map((s, i) => (
+              <ServiceCard key={s.num} service={s} index={i} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Services;

@@ -1,0 +1,49 @@
+import Logo from "../Logo";
+
+const Footer = () => {
+  return (
+    <footer className="bg-[hsl(0_0%_3%)] border-t border-border pt-20 pb-10">
+      <div className="container">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+          <div>
+            <Logo />
+            <p className="mt-6 text-cream-dim text-sm leading-relaxed max-w-xs">
+              Performance real. Sem intermediários.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="text-cream font-sora font-semibold text-sm tracking-[0.2em] uppercase mb-5">
+              Navegação
+            </h4>
+            <ul className="space-y-3 text-cream-dim text-sm">
+              <li><a href="#hero" className="hover:text-gold transition-colors story-link">Início</a></li>
+              <li><a href="#servicos" className="hover:text-gold transition-colors story-link">Serviços</a></li>
+              <li><a href="#resultados" className="hover:text-gold transition-colors story-link">Resultados</a></li>
+              <li><a href="#depoimentos" className="hover:text-gold transition-colors story-link">Depoimentos</a></li>
+              <li><a href="#contato" className="hover:text-gold transition-colors story-link">Contato</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-cream font-sora font-semibold text-sm tracking-[0.2em] uppercase mb-5">
+              Contato
+            </h4>
+            <ul className="space-y-3 text-cream-dim text-sm">
+              <li><a href="https://wa.me/5500000000000" target="_blank" rel="noreferrer" className="hover:text-gold transition-colors story-link">WhatsApp</a></li>
+              <li><a href="mailto:contato@axongrowth.com" className="hover:text-gold transition-colors story-link">contato@axongrowth.com</a></li>
+              <li><a href="https://instagram.com/axongrowth" target="_blank" rel="noreferrer" className="hover:text-gold transition-colors story-link">@axongrowth</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between gap-3 text-cream-dim text-xs">
+          <p>© 2025 Axon Growth. Todos os direitos reservados.</p>
+          <p>CNPJ a definir</p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
