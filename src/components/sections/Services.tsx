@@ -131,7 +131,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
   return (
     <article
       ref={ref}
-      className="group relative bg-background border border-border p-8 md:p-12 transition-all duration-500 hover:bg-[hsl(0_0%_8.5%)] hover:border-l-[3px] hover:border-l-gold"
+      className="group relative bg-background p-8 md:p-12 transition-all duration-500 hover:bg-[hsl(0_0%_8.5%)]"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(80px)",
@@ -163,7 +163,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
         ))}
       </ul>
 
-      <div className="mt-8 pt-6 border-t border-border">
+      <div className="mt-8 pt-6">
         <p className="font-sora italic text-gold text-base">{service.closing}</p>
       </div>
     </article>
@@ -208,7 +208,7 @@ const Services = () => {
           </div>
 
           {/* Right scrolling cards */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 flex flex-col gap-[2px] bg-[#0F0F0F]">
             {SERVICES.map((s, i) => (
               <ServiceCard key={s.num} service={s} index={i} />
             ))}
