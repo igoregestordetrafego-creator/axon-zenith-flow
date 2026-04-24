@@ -120,8 +120,9 @@ const ProofBar = () => {
 
       {/* Cards rail */}
       <div className="mt-16 md:mt-20 relative">
-        <div className="overflow-x-auto md:overflow-hidden scrollbar-none snap-x snap-mandatory">
-          <div className="flex gap-5 px-6 md:px-12 pb-4">
+        {/* Mobile: native horizontal scroll with snap */}
+        <div className="md:hidden overflow-x-auto scrollbar-none snap-x snap-mandatory">
+          <div className="flex gap-5 px-6 pb-4">
             {METRICS.map((m, i) => (
               <div key={i} className="snap-start">
                 <MetricCard metric={m} active={visible} delay={i * 100} />
@@ -129,9 +130,24 @@ const ProofBar = () => {
             ))}
           </div>
         </div>
+
+        {/* Desktop: infinite auto-scroll marquee (pause on hover) */}
+        <div className="hidden md:block overflow-hidden">
+          <div className="metrics-marquee flex gap-5 w-max pb-4">
+            {[...METRICS, ...METRICS].map((m, i) => (
+              <MetricCard
+                key={i}
+                metric={m}
+                active={visible}
+                delay={i < METRICS.length ? i * 100 : 0}
+              />
+            ))}
+          </div>
+        </div>
+
         {/* fade edges */}
-        <div className="hidden md:block absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-background-alt to-transparent pointer-events-none" />
-        <div className="hidden md:block absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-background-alt to-transparent pointer-events-none" />
+        <div className="hidden md:block absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-background-alt to-transparent pointer-events-none z-10" />
+        <div className="hidden md:block absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-background-alt to-transparent pointer-events-none z-10" />
       </div>
     </section>
   );
