@@ -97,10 +97,10 @@ const ProofBar = () => {
           <div
             className="transition-all duration-700"
             style={{
-              width: visible ? 60 : 0,
+              width: visible ? 48 : 0,
               height: 2,
               background: "#00C2D4",
-              marginBottom: 24,
+              marginBottom: 20,
             }}
           />
           <h2
