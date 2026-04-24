@@ -122,7 +122,7 @@ const ProofBar = () => {
       <div className="mt-16 md:mt-20 relative">
         {/* Mobile: native horizontal scroll with snap */}
         <div className="md:hidden overflow-x-auto scrollbar-none snap-x snap-mandatory">
-          <div className="flex gap-5 px-6 pb-4">
+          <div className="flex gap-5 pb-4" style={{ paddingLeft: 48, paddingRight: 48 }}>
             {METRICS.map((m, i) => (
               <div key={i} className="snap-start">
                 <MetricCard metric={m} active={visible} delay={i * 100} />
