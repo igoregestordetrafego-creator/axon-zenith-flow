@@ -84,9 +84,6 @@ const MetricCard = ({ metric, active, delay }: { metric: Metric; active: boolean
     </div>
   );
 };
-    </div>
-  );
-};
 
 const ProofBar = () => {
   const { ref, visible } = useReveal<HTMLDivElement>({ threshold: 0.1 });
