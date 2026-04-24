@@ -156,20 +156,45 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
         {service.num}
       </div>
 
-      <h3 className="font-sora font-semibold text-cream text-2xl md:text-[28px] leading-snug max-w-2xl relative">
+      <h3
+        className="font-display max-w-2xl relative normal-case"
+        style={{
+          fontSize: "clamp(28px, 3vw, 42px)",
+          fontWeight: 700,
+          lineHeight: 1.1,
+          color: "#F5F0E8",
+        }}
+      >
         {service.title}
       </h3>
 
-      <p className="mt-4 text-cream-dim text-base leading-relaxed max-w-2xl">
+      <p
+        className="mt-4 max-w-2xl"
+        style={{
+          fontFamily: "'DM Sans', system-ui, sans-serif",
+          fontSize: 15,
+          color: "#A89F91",
+          lineHeight: 1.6,
+        }}
+      >
         {service.subtitle}
       </p>
 
       <ul className="mt-8 space-y-3">
         {service.items.map((item, i) => (
-          <li key={i} className="flex gap-3 text-cream/90 text-[15px] leading-relaxed">
+          <li
+            key={i}
+            className="flex gap-3"
+            style={{
+              fontFamily: "'DM Sans', system-ui, sans-serif",
+              fontSize: 14,
+              color: "#C8C0B4",
+              lineHeight: 1.6,
+            }}
+          >
             <span
-              className="service-card__arrow text-gold flex-shrink-0 mt-0.5 inline-block group-hover:translate-x-1"
-              style={{ transition: "transform 300ms ease" }}
+              className="service-card__arrow flex-shrink-0 mt-0.5 inline-block group-hover:translate-x-1"
+              style={{ transition: "transform 300ms ease", color: "#00C2D4" }}
             >
               →
             </span>
@@ -180,8 +205,13 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
 
       <div className="mt-8 pt-6">
         <p
-          className="service-card__closing font-sora italic text-gold text-base"
-          style={{ transition: "text-shadow 300ms ease, filter 300ms ease" }}
+          className="service-card__closing italic"
+          style={{
+            fontFamily: "'DM Sans', system-ui, sans-serif",
+            fontSize: 15,
+            color: "#00C2D4",
+            transition: "text-shadow 300ms ease, filter 300ms ease",
+          }}
         >
           {service.closing}
         </p>
