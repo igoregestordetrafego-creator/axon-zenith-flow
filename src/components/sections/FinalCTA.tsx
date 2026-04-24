@@ -62,7 +62,7 @@ const FinalCTA = () => {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noreferrer"
-            className="group inline-flex items-center gap-4 bg-gold text-background px-10 py-6 font-display tracking-[0.15em] text-xl md:text-2xl hover:scale-[1.04] transition-transform duration-300 animate-pulse-glow"
+            className="btn-metallic group inline-flex items-center gap-4 bg-gold text-background px-10 py-6 font-display tracking-[0.15em] text-xl md:text-2xl rounded-full hover:scale-[1.04] transition-transform duration-300 animate-pulse-glow"
           >
             QUERO ENTRAR ANTES QUE FECHE
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-2">→</span>
