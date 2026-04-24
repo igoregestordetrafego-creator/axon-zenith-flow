@@ -24,6 +24,14 @@ const CustomCursor = () => {
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
       }
+      // Track cursor position inside metallic buttons for the cyan glow
+      const t = e.target as HTMLElement | null;
+      const btn = t?.closest<HTMLElement>(".btn-metallic");
+      if (btn) {
+        const rect = btn.getBoundingClientRect();
+        btn.style.setProperty("--mx", `${mx - rect.left}px`);
+        btn.style.setProperty("--my", `${my - rect.top}px`);
+      }
     };
 
     const tick = () => {
