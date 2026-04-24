@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { useReveal } from "@/hooks/useReveal";
 
 interface Service {
@@ -131,6 +132,8 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
   return (
     <article
       ref={ref}
+      data-service-card
+      data-index={index}
       className="service-card group relative bg-[#111111] p-8 md:p-12 overflow-hidden hover:bg-[#0F1A1A]"
       style={{
         opacity: visible ? 1 : 0,
@@ -222,6 +225,38 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
 
 const Services = () => {
   const { ref, visible } = useReveal<HTMLDivElement>({ threshold: 0.2 });
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const container = cardsContainerRef.current;
+    if (!container) return;
+    const cards = Array.from(
+      container.querySelectorAll<HTMLElement>("[data-service-card]")
+    );
+    if (cards.length === 0) return;
+
+    const visibleSet = new Set<number>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const i = Number((entry.target as HTMLElement).dataset.index);
+          if (entry.isIntersecting) visibleSet.add(i);
+          else visibleSet.delete(i);
+        });
+        if (visibleSet.size > 0) {
+          setActiveIndex(Math.min(...visibleSet));
+        }
+      },
+      { threshold: 0.5, rootMargin: "-20% 0px -20% 0px" }
+    );
+
+    cards.forEach((c) => observer.observe(c));
+    return () => observer.disconnect();
+  }, []);
+
+  const total = SERVICES.length;
+  const counter = `${String(activeIndex + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
 
   return (
     <section id="servicos" className="relative bg-background py-28 md:py-40">
@@ -235,18 +270,23 @@ const Services = () => {
                 style={{ width: visible ? 60 : 0 }}
               />
               <h2
-                className="font-display text-cream leading-[0.9] transition-all duration-700"
+                className="font-display leading-[0.9] transition-all duration-700"
                 style={{
-                  fontSize: "clamp(56px, 7vw, 110px)",
+                  fontSize: "clamp(48px, 6vw, 80px)",
+                  color: "#F5F0E8",
                   opacity: visible ? 1 : 0,
                   transform: visible ? "translateY(0)" : "translateY(40px)",
                 }}
               >
-                MAS COMO<br />A GENTE<br />ENTREGA<br /><span className="text-gold">TUDO ISSO?</span>
+                MAS COMO<br />ENTREGAMOS<br /><span style={{ color: "#00C2D4" }}>TUDO ISSO?</span>
               </h2>
               <p
-                className="mt-8 text-cream-dim text-base md:text-lg max-w-md leading-relaxed transition-all duration-700 delay-200"
+                className="mt-8 max-w-md transition-all duration-700 delay-200"
                 style={{
+                  fontFamily: "'DM Sans', system-ui, sans-serif",
+                  fontSize: 16,
+                  color: "#6B6B6B",
+                  lineHeight: 1.6,
                   opacity: visible ? 1 : 0,
                   transform: visible ? "translateY(0)" : "translateY(20px)",
                 }}
@@ -254,11 +294,25 @@ const Services = () => {
                 Cada resultado que tu viu acima tem um sistema por trás.
                 Aqui estão as peças.
               </p>
+
+              {/* Dynamic counter */}
+              <div
+                className="mt-8 font-display tabular-nums transition-all duration-700 delay-300"
+                style={{
+                  fontSize: "clamp(28px, 2.5vw, 36px)",
+                  letterSpacing: "0.05em",
+                  color: "#00C2D4",
+                  opacity: visible ? 1 : 0,
+                }}
+                aria-live="polite"
+              >
+                {counter}
+              </div>
             </div>
           </div>
 
           {/* Right scrolling cards */}
-          <div className="lg:col-span-7 flex flex-col gap-[2px] bg-[#0F0F0F]">
+          <div ref={cardsContainerRef} className="lg:col-span-7 flex flex-col gap-[2px] bg-[#0F0F0F]">
             {SERVICES.map((s, i) => (
               <ServiceCard key={s.num} service={s} index={i} />
             ))}
