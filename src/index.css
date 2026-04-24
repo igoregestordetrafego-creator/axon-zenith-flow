@@ -16,9 +16,9 @@
 
     --cream: 36 35% 93%;                /* #F5F0E8 */
     --cream-dim: 33 11% 61%;            /* #A89F91 */
-    --accent-gold: 38 45% 60%;          /* #C8A96E */
+    --accent-gold: 186 100% 42%;        /* #00C2D4 cyan */
     --border-dark: 0 0% 12%;            /* #1E1E1E */
-    --glow: 38 45% 60%;                 /* used with /opacity */
+    --glow: 186 100% 42%;               /* used with /opacity */
 
     --card: 0 0% 7%;
     --card-foreground: 36 35% 93%;
@@ -26,7 +26,7 @@
     --popover: 0 0% 7%;
     --popover-foreground: 36 35% 93%;
 
-    --primary: 38 45% 60%;
+    --primary: 186 100% 42%;
     --primary-foreground: 0 0% 4%;
 
     --secondary: 0 0% 10%;
@@ -35,7 +35,7 @@
     --muted: 0 0% 10%;
     --muted-foreground: 33 11% 61%;
 
-    --accent: 38 45% 60%;
+    --accent: 186 100% 42%;
     --accent-foreground: 0 0% 4%;
 
     --destructive: 0 62% 45%;
@@ -43,7 +43,7 @@
 
     --border: 0 0% 12%;
     --input: 0 0% 12%;
-    --ring: 38 45% 60%;
+    --ring: 186 100% 42%;
 
     --radius: 0.25rem;
 
@@ -56,12 +56,12 @@
     /* Sidebar (unused — kept for shadcn compat) */
     --sidebar-background: 0 0% 4%;
     --sidebar-foreground: 36 35% 93%;
-    --sidebar-primary: 38 45% 60%;
+    --sidebar-primary: 186 100% 42%;
     --sidebar-primary-foreground: 0 0% 4%;
     --sidebar-accent: 0 0% 10%;
     --sidebar-accent-foreground: 36 35% 93%;
     --sidebar-border: 0 0% 12%;
-    --sidebar-ring: 38 45% 60%;
+    --sidebar-ring: 186 100% 42%;
   }
 }
 
