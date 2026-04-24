@@ -93,19 +93,26 @@ const ProofBar = () => {
   return (
     <section id="resultados" className="relative bg-background-alt py-28 md:py-36 overflow-hidden">
       <div className="container">
-        <div ref={ref} className="max-w-3xl">
+        <div ref={ref} className="max-w-3xl mx-auto text-center flex flex-col items-center">
           <div
-            className="h-px bg-gold mb-6 transition-all duration-700"
-            style={{ width: visible ? 60 : 0 }}
+            className="transition-all duration-700"
+            style={{
+              width: visible ? 60 : 0,
+              height: 2,
+              background: "#00C2D4",
+              marginBottom: 24,
+            }}
           />
           <h2
-            className="font-sora font-semibold text-cream-dim text-2xl md:text-3xl leading-tight transition-all duration-700"
+            className="font-sora font-semibold leading-tight transition-all duration-700"
             style={{
+              fontSize: "clamp(28px, 4vw, 48px)",
+              color: "#F5F0E8",
               opacity: visible ? 1 : 0,
-              transform: visible ? "translateX(0)" : "translateX(-40px)",
+              transform: visible ? "translateY(0)" : "translateY(20px)",
             }}
           >
-            <span className="text-cream">Números</span> que a maioria das agências
+            <span style={{ color: "#00C2D4" }}>Números</span> que a maioria das agências
             não tem coragem de mostrar.
           </h2>
         </div>
