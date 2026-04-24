@@ -54,8 +54,8 @@ const MetricCard = ({ metric, active, delay }: { metric: Metric; active: boolean
         background: "#111111",
         border: "1px solid #1E1E1E",
         opacity: active ? 1 : 0,
-        transform: active ? "scale(1)" : "scale(0.7)",
-        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s cubic-bezier(0.22,1,0.36,1) ${delay}ms, border-color 300ms ease, box-shadow 300ms ease, background 300ms ease`,
+        transform: active ? "translateY(0)" : "translateY(-80px)",
+        transition: `opacity 700ms ease-out ${delay}ms, transform 700ms ease-out ${delay}ms, border-color 300ms ease, box-shadow 300ms ease, background 300ms ease`,
       }}
     >
       <div
