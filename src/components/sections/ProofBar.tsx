@@ -47,13 +47,15 @@ const MetricCard = ({ metric, active, delay }: { metric: Metric; active: boolean
   return (
     <div
       data-cursor-hover
-      className="group relative shrink-0 w-[300px] md:w-[340px] bg-background-alt border border-border transition-all duration-500 hover:border-gold hover:shadow-gold flex flex-col justify-end"
+      className="metric-card group relative shrink-0 w-[300px] md:w-[340px] flex flex-col justify-end"
       style={{
         height: "220px",
         padding: "32px",
+        background: "#111111",
+        border: "1px solid #1E1E1E",
         opacity: active ? 1 : 0,
         transform: active ? "scale(1)" : "scale(0.7)",
-        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s cubic-bezier(0.22,1,0.36,1) ${delay}ms, border-color 0.3s, box-shadow 0.3s`,
+        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s cubic-bezier(0.22,1,0.36,1) ${delay}ms, border-color 300ms ease, box-shadow 300ms ease, background 300ms ease`,
       }}
     >
       <div
