@@ -1,38 +1,24 @@
 import { cn } from "@/lib/utils";
+import logoImg from "@/assets/axon-logo.png";
 
 interface LogoProps {
   className?: string;
+  /** Kept for API compatibility — the wordmark is part of the image. */
   showText?: boolean;
 }
 
 /**
- * Geometric falcon mark + AXON GROWTH wordmark.
- * Cream on dark, sharp angular wings.
+ * Axon Growth official logo (bird mark + wordmark baked in).
  */
-const Logo = ({ className, showText = true }: LogoProps) => {
+const Logo = ({ className }: LogoProps) => {
   return (
-    <div className={cn("flex items-center gap-3", className)}>
-      <svg
-        viewBox="0 0 48 36"
-        className="h-8 w-auto text-cream"
-        fill="none"
-        aria-hidden="true"
-      >
-        {/* Angular falcon: sharp swept wings, body, beak */}
-        <path
-          d="M2 22 L14 4 L20 14 L24 8 L28 14 L34 4 L46 22 L36 18 L30 26 L24 20 L18 26 L12 18 L2 22 Z"
-          fill="currentColor"
-        />
-        <path
-          d="M22 20 L24 30 L26 20 Z"
-          fill="currentColor"
-        />
-      </svg>
-      {showText && (
-        <span className="font-display text-cream text-2xl tracking-[0.18em] leading-none pt-1">
-          AXON GROWTH
-        </span>
-      )}
+    <div className={cn("flex items-center", className)}>
+      <img
+        src={logoImg}
+        alt="Axon Growth"
+        className="h-9 md:h-10 w-auto select-none"
+        draggable={false}
+      />
     </div>
   );
 };
