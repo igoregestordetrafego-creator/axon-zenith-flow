@@ -24,6 +24,10 @@ const CustomCursor = () => {
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
       }
+      // Spotlight follows mouse with CSS transition (200ms ease-out)
+      if (spotRef.current) {
+        spotRef.current.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+      }
       // Track cursor position inside metallic buttons for the cyan glow
       const t = e.target as HTMLElement | null;
       const btn = t?.closest<HTMLElement>(".btn-metallic");
@@ -35,16 +39,11 @@ const CustomCursor = () => {
     };
 
     const tick = () => {
-      // ring lags ~10%
+      // ring lags ~18%
       rx += (mx - rx) * 0.18;
       ry += (my - ry) * 0.18;
-      sx += (mx - sx) * 0.08;
-      sy += (my - sy) * 0.08;
       if (ringRef.current) {
         ringRef.current.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
-      }
-      if (spotRef.current) {
-        spotRef.current.style.transform = `translate(${sx}px, ${sy}px) translate(-50%, -50%)`;
       }
       raf = requestAnimationFrame(tick);
     };
