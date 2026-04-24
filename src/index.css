@@ -281,3 +281,13 @@
   }
 }
 
+/* ============================================
+   METRIC CARDS — hover state
+============================================ */
+@layer components {
+  .metric-card:hover {
+    border-color: #00C2D4 !important;
+    box-shadow: 0 0 24px rgba(0, 194, 212, 0.15);
+  }
+}
+
