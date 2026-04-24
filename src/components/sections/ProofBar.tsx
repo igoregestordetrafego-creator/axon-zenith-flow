@@ -132,7 +132,7 @@ const ProofBar = () => {
         </div>
 
         {/* Desktop: infinite auto-scroll marquee (pause on hover) */}
-        <div className="hidden md:block overflow-hidden">
+        <div className="hidden md:block overflow-hidden" style={{ paddingLeft: 48, paddingRight: 48 }}>
           <div className="metrics-marquee flex gap-5 w-max pb-4">
             {[...METRICS, ...METRICS].map((m, i) => (
               <MetricCard
