@@ -54,15 +54,31 @@ const MetricCard = ({ metric, active, delay }: { metric: Metric; active: boolean
         transition: `opacity 0.6s ease ${delay}ms, transform 0.6s cubic-bezier(0.22,1,0.36,1) ${delay}ms, border-color 0.3s, box-shadow 0.3s`,
       }}
     >
-      <div className="font-display text-gold leading-none mb-6 transition-transform duration-300 group-hover:scale-105"
-           style={{ fontSize: "clamp(40px, 5vw, 64px)" }}>
+      <div
+        className="font-display leading-none mb-6 transition-transform duration-300 group-hover:scale-105"
+        style={{
+          fontSize: "clamp(48px, 6vw, 72px)",
+          fontWeight: 700,
+          color: "hsl(var(--accent-gold))",
+        }}
+      >
         {metric.numeric !== undefined && metric.format ? (
           <CountUp target={metric.numeric} format={metric.format} active={active} />
         ) : (
           metric.value
         )}
       </div>
-      <p className="text-cream-dim text-sm leading-relaxed">{metric.label}</p>
+      <p
+        className="leading-relaxed"
+        style={{
+          fontFamily: "'DM Sans', system-ui, sans-serif",
+          fontSize: "14px",
+          fontWeight: 400,
+          color: "hsl(var(--cream-dim))",
+        }}
+      >
+        {metric.label}
+      </p>
     </div>
   );
 };
