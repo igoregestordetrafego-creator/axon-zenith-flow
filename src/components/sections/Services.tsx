@@ -131,16 +131,26 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
   return (
     <article
       ref={ref}
-      className="group relative bg-background p-8 md:p-12 transition-all duration-500 hover:bg-[hsl(0_0%_8.5%)]"
+      className="service-card group relative bg-[#111111] p-8 md:p-12 overflow-hidden hover:bg-[#0F1A1A]"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateX(0)" : "translateX(120px)",
-        transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 150}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 150}ms, background 0.3s, border-color 0.3s`,
+        transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 150}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 150}ms, background-color 0.3s ease`,
       }}
     >
+      {/* Animated left border (top → bottom on hover) */}
+      <span
+        aria-hidden
+        className="service-card__border absolute left-0 top-0 w-[3px] bg-[#00C2D4] h-0 group-hover:h-full"
+        style={{ transition: "height 400ms cubic-bezier(0.22,1,0.36,1)" }}
+      />
+
       <div
-        className="font-display absolute top-4 right-6 text-[hsl(var(--border-dark))] leading-none select-none pointer-events-none"
-        style={{ fontSize: "clamp(80px, 10vw, 140px)" }}
+        className="service-card__num font-display absolute top-4 right-6 text-cream leading-none select-none pointer-events-none origin-top-right opacity-[0.06] scale-100 group-hover:opacity-[0.15] group-hover:scale-105"
+        style={{
+          fontSize: "clamp(80px, 10vw, 140px)",
+          transition: "opacity 300ms ease, transform 300ms ease",
+        }}
         aria-hidden
       >
         {service.num}
@@ -157,14 +167,24 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
       <ul className="mt-8 space-y-3">
         {service.items.map((item, i) => (
           <li key={i} className="flex gap-3 text-cream/90 text-[15px] leading-relaxed">
-            <span className="text-gold flex-shrink-0 mt-0.5">→</span>
+            <span
+              className="service-card__arrow text-gold flex-shrink-0 mt-0.5 inline-block group-hover:translate-x-1"
+              style={{ transition: "transform 300ms ease" }}
+            >
+              →
+            </span>
             <span>{item}</span>
           </li>
         ))}
       </ul>
 
       <div className="mt-8 pt-6">
-        <p className="font-sora italic text-gold text-base">{service.closing}</p>
+        <p
+          className="service-card__closing font-sora italic text-gold text-base"
+          style={{ transition: "text-shadow 300ms ease, filter 300ms ease" }}
+        >
+          {service.closing}
+        </p>
       </div>
     </article>
   );
