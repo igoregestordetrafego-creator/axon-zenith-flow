@@ -134,8 +134,8 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
       className="group relative bg-background p-8 md:p-12 transition-all duration-500 hover:bg-[hsl(0_0%_8.5%)]"
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(80px)",
-        transition: `opacity 0.7s ease ${index * 60}ms, transform 0.8s cubic-bezier(0.22,1,0.36,1) ${index * 60}ms, background 0.3s, border-color 0.3s`,
+        transform: visible ? "translateX(0)" : "translateX(120px)",
+        transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 150}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 150}ms, background 0.3s, border-color 0.3s`,
       }}
     >
       <div
