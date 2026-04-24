@@ -22,7 +22,7 @@ const LoadingScreen = () => {
       style={{ opacity: hidden ? 0 : 1, pointerEvents: hidden ? "none" : "auto" }}
       aria-hidden
     >
-      <div className="animate-logo-grow">
+      <div className="animate-logo-grow scale-150">
         <Logo />
       </div>
     </div>

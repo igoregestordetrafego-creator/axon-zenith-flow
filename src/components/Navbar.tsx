@@ -18,8 +18,8 @@ const Navbar = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-[100] transition-all duration-300",
         scrolled
-          ? "h-[60px] bg-background/85 backdrop-blur-md border-b border-border"
-          : "h-[80px] bg-transparent"
+          ? "h-[80px] bg-background/85 backdrop-blur-md border-b border-border"
+          : "h-[100px] bg-transparent"
       )}
     >
       <div className="container h-full flex items-center justify-between">
