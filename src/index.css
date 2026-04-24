@@ -242,3 +242,42 @@
 
   .text-balance { text-wrap: balance; }
 }
+
+/* ============================================
+   METALLIC CYAN BUTTON — cursor-tracked glow
+============================================ */
+@layer components {
+  .btn-metallic {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    --mx: 50%;
+    --my: 50%;
+  }
+  .btn-metallic::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      180px circle at var(--mx) var(--my),
+      hsl(186 100% 55% / 0.55),
+      hsl(186 100% 42% / 0.18) 40%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .btn-metallic:hover::before {
+    opacity: 1;
+  }
+  .btn-metallic:hover {
+    border-color: hsl(186 100% 55% / 0.7);
+    box-shadow:
+      0 0 0 1px hsl(186 100% 55% / 0.35),
+      0 8px 30px -8px hsl(186 100% 42% / 0.55);
+  }
+}
+

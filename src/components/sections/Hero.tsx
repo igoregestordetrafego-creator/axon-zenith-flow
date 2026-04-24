@@ -86,16 +86,17 @@ const Hero = () => {
       <div className="absolute inset-0 bg-fade-bottom pointer-events-none" />
 
       <div className="container relative z-10 pt-24 pb-32">
-        <div className="max-w-[1100px] mx-auto">
+        <div className="max-w-[1100px] mx-auto text-center flex flex-col items-center">
           {/* Eyebrow */}
           <div
-            className="flex items-center gap-3 mb-8 opacity-0"
+            className="flex items-center justify-center gap-3 mb-8 opacity-0"
             style={{ animation: "word-rise 0.7s ease-out 0.1s forwards" }}
           >
             <span className="h-px w-10 bg-gold" />
             <span className="text-cream-dim text-xs tracking-[0.3em] uppercase font-medium">
               Agência de performance digital
             </span>
+            <span className="h-px w-10 bg-gold" />
           </div>
 
           <h1 className="font-display leading-[0.95] text-cream" style={{ fontWeight: 700, letterSpacing: "0.03em" }}>
@@ -120,12 +121,12 @@ const Hero = () => {
             </span>
           </h1>
 
-          <div className="mt-10 max-w-2xl space-y-4">
+          <div className="mt-10 max-w-2xl space-y-4 mx-auto">
             <p
               className="text-cream/90 text-lg md:text-xl leading-relaxed font-medium opacity-0"
               style={{ animation: "word-rise 0.7s ease-out 0.45s forwards" }}
             >
-              Mapeamos, ajustamos e escalamos toda a tua operação —
+              Mapeamos, ajustamos e escalamos toda a tua operação,
               da estrutura ao anúncio, do dado à venda.
             </p>
             <p
@@ -145,7 +146,7 @@ const Hero = () => {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex items-center gap-4 border border-cream text-cream px-8 py-5 text-sm md:text-base tracking-[0.2em] uppercase font-semibold hover:bg-gold hover:text-background hover:border-gold transition-all duration-300"
+              className="btn-metallic group inline-flex items-center gap-4 border border-cream text-cream px-8 py-5 text-sm md:text-base tracking-[0.2em] uppercase font-semibold rounded-full transition-all duration-300"
             >
               Quero escalar minha operação
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-2">→</span>

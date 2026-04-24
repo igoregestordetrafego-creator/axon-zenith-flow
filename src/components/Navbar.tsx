@@ -38,7 +38,7 @@ const Navbar = () => {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noreferrer"
-          className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 border border-cream/40 text-cream text-xs font-semibold tracking-[0.2em] uppercase hover:bg-gold hover:text-background hover:border-gold transition-all duration-300"
+          className="btn-metallic hidden sm:inline-flex items-center gap-2 px-5 py-2.5 border border-cream/40 text-cream text-xs font-semibold tracking-[0.2em] uppercase rounded-full transition-all duration-300"
         >
           Falar com a Axon
         </a>
