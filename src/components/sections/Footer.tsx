@@ -30,7 +30,7 @@ const Footer = () => {
               Contato
             </h4>
             <ul className="space-y-3 text-cream-dim text-sm">
-              <li><a href="https://wa.me/5500000000000" target="_blank" rel="noreferrer" className="hover:text-gold transition-colors story-link">WhatsApp</a></li>
+              <li><a href="https://wa.me/message/RHHL5HTXCEZWJ1" target="_blank" rel="noreferrer" className="hover:text-gold transition-colors story-link">WhatsApp</a></li>
               <li><a href="mailto:contato@axongrowth.com" className="hover:text-gold transition-colors story-link">contato@axongrowth.com</a></li>
               <li><a href="https://instagram.com/axongrowth" target="_blank" rel="noreferrer" className="hover:text-gold transition-colors story-link">@axongrowth</a></li>
             </ul>

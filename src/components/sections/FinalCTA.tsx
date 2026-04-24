@@ -1,6 +1,6 @@
 import { useReveal } from "@/hooks/useReveal";
 
-const WHATSAPP_URL = "https://wa.me/5500000000000";
+const WHATSAPP_URL = "https://wa.me/message/RHHL5HTXCEZWJ1";
 const WORDS = ["TUA", "CONCORRÊNCIA", "JÁ ESTÁ", "CRESCENDO", "COM", "A GENTE."];
 
 const FinalCTA = () => {

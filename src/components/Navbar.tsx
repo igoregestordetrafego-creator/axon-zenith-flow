@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import { cn } from "@/lib/utils";
 
-const WHATSAPP_URL = "https://wa.me/5500000000000";
+const WHATSAPP_URL = "https://wa.me/message/RHHL5HTXCEZWJ1";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
