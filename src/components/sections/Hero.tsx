@@ -98,24 +98,25 @@ const Hero = () => {
             </span>
           </div>
 
-          <h1 className="font-display leading-[0.88] text-cream">
+          <h1 className="font-display leading-[0.95] text-cream" style={{ fontWeight: 700, letterSpacing: "0.03em" }}>
             <span
               className="block opacity-0"
               style={{
-                fontSize: "clamp(64px, 10vw, 140px)",
+                fontSize: "clamp(56px, 9vw, 120px)",
                 animation: "word-rise 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s forwards",
               }}
             >
-              TRÁFEGO PAGO
+              Tráfego pago
             </span>
             <span
-              className="block text-gold opacity-0"
+              className="block opacity-0"
               style={{
-                fontSize: "clamp(64px, 10vw, 140px)",
+                fontSize: "clamp(56px, 9vw, 120px)",
+                color: "hsl(var(--accent-gold))",
                 animation: "word-rise 0.9s cubic-bezier(0.22,1,0.36,1) 0.25s forwards",
               }}
             >
-              É SÓ O COMEÇO.
+              É só o começo.
             </span>
           </h1>
 
