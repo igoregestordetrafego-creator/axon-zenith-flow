@@ -115,9 +115,9 @@
     top: 0; left: 0;
     width: 6px; height: 6px;
     border-radius: 50%;
-    background: hsl(var(--cream));
+    background: #F5F0E8;
     pointer-events: none;
-    z-index: 10000;
+    z-index: 9999;
     transform: translate(-50%, -50%);
     transition: opacity 0.2s, width 0.2s, height 0.2s;
     mix-blend-mode: difference;
@@ -127,18 +127,21 @@
     top: 0; left: 0;
     width: 36px; height: 36px;
     border-radius: 50%;
-    border: 1px solid hsl(var(--accent-gold));
+    border: 1px solid #00C2D4;
+    background: transparent;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                background 0.3s, border-color 0.3s, opacity 0.2s;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1) 80ms,
+                height 0.3s cubic-bezier(0.4, 0, 0.2, 1) 80ms,
+                background 0.3s ease 80ms,
+                border-color 0.3s ease 80ms,
+                opacity 0.2s;
   }
   .cursor-ring.hover-link {
-    width: 60px; height: 60px;
-    background: hsl(var(--accent-gold) / 0.08);
-    border-color: hsl(var(--accent-gold) / 0.6);
+    width: 56px; height: 56px;
+    background: rgba(0, 194, 212, 0.3);
+    border-color: rgba(0, 194, 212, 0.6);
   }
   .cursor-spotlight {
     position: fixed;
@@ -152,7 +155,7 @@
     transition: opacity 0.4s;
   }
   @media (hover: none) {
-    .cursor-dot, .cursor-ring, .cursor-spotlight { display: none; }
+    .cursor-dot, .cursor-ring, .cursor-spotlight { display: none !important; }
     body { cursor: auto; }
   }
 }
