@@ -296,6 +296,16 @@
 }
 
 /* ============================================
+   SERVICE CARDS — hover glow on closing line
+============================================ */
+@layer components {
+  .service-card:hover .service-card__closing {
+    text-shadow: 0 0 12px hsl(186 100% 55% / 0.55);
+    filter: brightness(1.15);
+  }
+}
+
+/* ============================================
    METRICS MARQUEE — infinite auto-scroll
 ============================================ */
 @layer components {
