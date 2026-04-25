@@ -134,20 +134,22 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
       ref={ref}
       data-service-card
       data-index={index}
-      className="service-card group relative bg-[#111111] p-8 md:p-12 overflow-hidden hover:bg-[#0F1A1A]"
+      className="service-card group relative overflow-hidden mx-auto w-full"
       style={{
+        backgroundColor: "#0D0D0D",
+        borderRadius: 2,
+        padding: 48,
+        paddingTop: 80,
+        paddingBottom: 80,
+        marginBottom: 16,
+        borderLeft: "3px solid #1E1E1E",
+        maxWidth: 860,
         opacity: visible ? 1 : 0,
-        transform: visible ? "translateX(0)" : "translateX(120px)",
-        transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 150}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 150}ms, background-color 0.3s ease`,
+        transform: visible ? "translateX(0)" : "translateX(80px)",
+        transition:
+          "opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1), background-color 0.3s ease, border-color 0.3s ease, box-shadow 400ms ease",
       }}
     >
-      {/* Animated left border (top → bottom on hover) */}
-      <span
-        aria-hidden
-        className="service-card__border absolute left-0 top-0 w-[3px] bg-[#00C2D4] h-0 group-hover:h-full"
-        style={{ transition: "height 400ms cubic-bezier(0.22,1,0.36,1)" }}
-      />
-
       <div
         className="service-card__num font-display absolute top-4 right-6 text-cream leading-none select-none pointer-events-none origin-top-right opacity-[0.06] scale-100 group-hover:opacity-[0.15] group-hover:scale-105"
         style={{
@@ -160,11 +162,13 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
       </div>
 
       <h3
-        className="font-display relative normal-case pr-28 md:pr-36"
+        className="font-display relative pr-28 md:pr-36"
         style={{
-          fontSize: "clamp(26px, 2.6vw, 36px)",
+          fontFamily: "'Bebas Neue', sans-serif",
+          fontSize: "clamp(36px, 4vw, 56px)",
+          textTransform: "none",
           fontWeight: 700,
-          lineHeight: 1.15,
+          lineHeight: 1.05,
           color: "#F5F0E8",
         }}
       >
@@ -172,18 +176,19 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
       </h3>
 
       <p
-        className="mt-4 max-w-2xl"
+        className="max-w-2xl"
         style={{
           fontFamily: "'DM Sans', system-ui, sans-serif",
           fontSize: 15,
           color: "#A89F91",
           lineHeight: 1.6,
+          marginTop: 16,
         }}
       >
         {service.subtitle}
       </p>
 
-      <ul className="mt-8 space-y-3">
+      <ul style={{ marginTop: 24, display: "flex", flexDirection: "column", gap: 12 }}>
         {service.items.map((item, i) => (
           <li
             key={i}
@@ -206,7 +211,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
         ))}
       </ul>
 
-      <div className="mt-8 pt-6">
+      <div style={{ marginTop: 32 }}>
         <p
           className="service-card__closing italic"
           style={{
@@ -262,34 +267,36 @@ const Services = () => {
     <section id="servicos" className="relative bg-background py-28 md:py-40">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Sticky left title — vertically centered in viewport */}
+          {/* Sticky left title — fixed 340px width, sticky at top:40vh */}
           <div className="lg:col-span-5">
             <div
-              className="lg:sticky lg:flex lg:items-center lg:min-h-screen"
-              style={{ top: 0 }}
+              className="lg:sticky"
+              style={{ top: "40vh", width: 340, maxWidth: "100%" }}
               ref={ref}
             >
-            <div className="w-full">
               <div
                 className="h-px bg-gold mb-6 transition-all duration-700"
                 style={{ width: visible ? 60 : 0 }}
               />
               <h2
-                className="font-display leading-[0.9] transition-all duration-700"
+                className="font-display transition-all duration-700"
                 style={{
-                  fontSize: "clamp(48px, 6vw, 80px)",
+                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontSize: "clamp(52px, 5vw, 72px)",
+                  lineHeight: 1,
                   color: "#F5F0E8",
                   opacity: visible ? 1 : 0,
                   transform: visible ? "translateY(0)" : "translateY(40px)",
                 }}
               >
-                MAS COMO<br />ENTREGAMOS<br /><span style={{ color: "#00C2D4" }}>TUDO ISSO?</span>
+                MAS COMO<br />ENTREGAMOS<br />
+                <span style={{ color: "#00C2D4" }}>TUDO ISSO?</span>
               </h2>
               <p
                 className="mt-8 max-w-md transition-all duration-700 delay-200"
                 style={{
                   fontFamily: "'DM Sans', system-ui, sans-serif",
-                  fontSize: 16,
+                  fontSize: 14,
                   color: "#6B6B6B",
                   lineHeight: 1.6,
                   opacity: visible ? 1 : 0,
@@ -302,11 +309,13 @@ const Services = () => {
 
               {/* Dynamic counter */}
               <div
-                className="mt-8 font-display tabular-nums transition-all duration-700 delay-300"
+                className="font-display tabular-nums transition-all duration-700 delay-300"
                 style={{
-                  fontSize: "clamp(28px, 2.5vw, 36px)",
+                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontSize: 18,
                   letterSpacing: "0.05em",
                   color: "#00C2D4",
+                  marginTop: 32,
                   opacity: visible ? 1 : 0,
                 }}
                 aria-live="polite"
@@ -314,11 +323,10 @@ const Services = () => {
                 {counter}
               </div>
             </div>
-            </div>
           </div>
 
           {/* Right scrolling cards */}
-          <div ref={cardsContainerRef} className="lg:col-span-7 flex flex-col gap-[2px] bg-[#0F0F0F]">
+          <div ref={cardsContainerRef} className="lg:col-span-7 flex flex-col">
             {SERVICES.map((s, i) => (
               <ServiceCard key={s.num} service={s} index={i} />
             ))}
