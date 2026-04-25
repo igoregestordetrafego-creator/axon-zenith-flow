@@ -2,7 +2,7 @@ import Logo from "../Logo";
 
 const Footer = () => {
   return (
-    <footer className="bg-[hsl(0_0%_3%)] border-t border-border pt-20 pb-10">
+    <footer className="pt-20 pb-10">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           <div>
