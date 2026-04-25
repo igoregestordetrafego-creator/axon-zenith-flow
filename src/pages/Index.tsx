@@ -1,6 +1,7 @@
 import CustomCursor from "@/components/CustomCursor";
 import LoadingScreen from "@/components/LoadingScreen";
 import Navbar from "@/components/Navbar";
+import FlowLines from "@/components/FlowLines";
 import Hero from "@/components/sections/Hero";
 import ProofBar from "@/components/sections/ProofBar";
 import Services from "@/components/sections/Services";
@@ -13,8 +14,9 @@ const Index = () => {
     <div className="relative min-h-screen bg-background text-foreground">
       <LoadingScreen />
       <CustomCursor />
+      <FlowLines />
       <Navbar />
-      <main>
+      <main className="relative z-[1]">
         <Hero />
         <ProofBar />
         <Services />
