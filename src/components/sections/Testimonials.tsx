@@ -164,7 +164,7 @@ const Testimonials = () => {
   const scrollTo = (i: number) => emblaApi?.scrollTo(i);
 
   return (
-    <section id="depoimentos" className="bg-background-alt py-28 md:py-40">
+    <section id="depoimentos" className="py-28 md:py-40">
       <div className="mx-auto px-6" style={{ maxWidth: 1200 }}>
         {/* Title block */}
         <div ref={headRef} className="max-w-3xl mx-auto mb-6 text-center">

@@ -91,7 +91,7 @@ const ProofBar = () => {
   const { ref, visible } = useReveal<HTMLDivElement>({ threshold: 0.1 });
 
   return (
-    <section id="resultados" className="relative bg-background-alt py-28 md:py-36 overflow-hidden">
+    <section id="resultados" className="relative py-28 md:py-36 overflow-hidden">
       <div className="container">
         <div ref={ref} className="max-w-3xl mx-auto text-center flex flex-col items-center">
           <div
@@ -146,8 +146,8 @@ const ProofBar = () => {
         </div>
 
         {/* fade edges */}
-        <div className="hidden md:block absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-background-alt to-transparent pointer-events-none z-10" />
-        <div className="hidden md:block absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-background-alt to-transparent pointer-events-none z-10" />
+        <div className="hidden md:block absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
+        <div className="hidden md:block absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
       </div>
     </section>
   );
