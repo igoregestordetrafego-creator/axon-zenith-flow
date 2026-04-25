@@ -35,7 +35,7 @@ const TESTIMONIALS: Testimonial[] = [
 const TestimonialCard = ({ t, index, visible }: { t: Testimonial; index: number; visible: boolean }) => {
   return (
     <div
-      className="relative bg-background border border-border p-8 transition-all duration-500 hover:border-[#00C2D4]/60 h-full overflow-hidden"
+      className="relative bg-background border border-border p-8 transition-all duration-500 hover:border-[#00C2D4]/60 h-full overflow-hidden flex flex-col"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateX(0)" : "translateX(-100px)",
@@ -53,42 +53,46 @@ const TestimonialCard = ({ t, index, visible }: { t: Testimonial; index: number;
         </span>
       )}
 
-      {t.type === "video" && (
-        <div className="relative aspect-video bg-background-alt border border-border flex items-center justify-center mb-6 group cursor-pointer overflow-hidden transition-colors hover:border-[#00C2D4]">
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 transition-colors duration-300" />
-          <div
-            className="relative w-16 h-16 rounded-full border border-cream-dim flex items-center justify-center transition-all duration-300 group-hover:scale-[1.15] group-hover:border-[#00C2D4]"
-            style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
-          >
-            <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                 style={{ boxShadow: "0 0 32px rgba(0,194,212,0.6), inset 0 0 16px rgba(0,194,212,0.3)" }} />
-            <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
-              <path d="M2 2 L18 11 L2 20 Z" fill="hsl(var(--cream))" />
-            </svg>
+      {/* Media area — uniform height across all cards so identifications align */}
+      <div className="relative flex-1 flex flex-col mb-6 min-h-[260px]">
+        {t.type === "video" && (
+          <div className="relative flex-1 bg-background-alt border border-border flex items-center justify-center group cursor-pointer overflow-hidden transition-colors hover:border-[#00C2D4]">
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 transition-colors duration-300" />
+            <div
+              className="relative w-16 h-16 rounded-full border border-cream-dim flex items-center justify-center transition-all duration-300 group-hover:scale-[1.15] group-hover:border-[#00C2D4]"
+              style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
+            >
+              <div
+                className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ boxShadow: "0 0 32px rgba(0,194,212,0.6), inset 0 0 16px rgba(0,194,212,0.3)" }}
+              />
+              <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
+                <path d="M2 2 L18 11 L2 20 Z" fill="hsl(var(--cream))" />
+              </svg>
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {t.type === "text" && (
-        <div className="relative mb-6 min-h-[200px]">
+        {t.type === "text" && (
           <p className="relative font-sora text-cream/90 text-base leading-relaxed pt-8">
             {t.quote}
           </p>
-        </div>
-      )}
+        )}
 
-      {t.type === "image" && (
-        <div className="aspect-[4/3] bg-background-alt border border-[#1E1E1E] flex items-center justify-center mb-6 transition-colors hover:border-[#00C2D4]">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="text-cream-dim/40">
-            <rect x="6" y="10" width="36" height="28" stroke="currentColor" strokeWidth="1.5" />
-            <circle cx="16" cy="20" r="3" stroke="currentColor" strokeWidth="1.5" />
-            <path d="M6 32 L18 22 L28 30 L42 18" stroke="currentColor" strokeWidth="1.5" />
-          </svg>
-        </div>
-      )}
+        {t.type === "image" && (
+          <div className="relative flex-1 bg-background-alt border border-[#1E1E1E] flex items-center justify-center transition-colors hover:border-[#00C2D4]">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="text-cream-dim/40">
+              <rect x="6" y="10" width="36" height="28" stroke="currentColor" strokeWidth="1.5" />
+              <circle cx="16" cy="20" r="3" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M6 32 L18 22 L28 30 L42 18" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+          </div>
+        )}
+      </div>
 
-      <div className="relative flex items-center gap-3 pt-4 border-t border-border">
-        <div className="w-10 h-10 rounded-full bg-background-alt border border-border" />
+      {/* Footer pinned to bottom — same position across all cards */}
+      <div className="relative flex items-center gap-3 pt-4 border-t border-border mt-auto">
+        <div className="w-10 h-10 rounded-full bg-background-alt border border-border shrink-0" />
         <div>
           <div className="text-cream font-sora font-semibold text-sm">{t.name}</div>
           <div className="text-cream-dim text-xs">{t.role}</div>
