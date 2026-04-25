@@ -262,9 +262,14 @@ const Services = () => {
     <section id="servicos" className="relative bg-background py-28 md:py-40">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Sticky left title */}
+          {/* Sticky left title — vertically centered in viewport */}
           <div className="lg:col-span-5">
-            <div className="lg:sticky lg:top-32" ref={ref}>
+            <div
+              className="lg:sticky lg:flex lg:items-center lg:min-h-screen"
+              style={{ top: 0 }}
+              ref={ref}
+            >
+            <div className="w-full">
               <div
                 className="h-px bg-gold mb-6 transition-all duration-700"
                 style={{ width: visible ? 60 : 0 }}
@@ -308,6 +313,7 @@ const Services = () => {
               >
                 {counter}
               </div>
+            </div>
             </div>
           </div>
 
