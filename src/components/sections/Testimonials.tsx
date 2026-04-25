@@ -167,14 +167,14 @@ const Testimonials = () => {
     <section id="depoimentos" className="bg-background-alt py-28 md:py-40">
       <div className="mx-auto px-6" style={{ maxWidth: 1200 }}>
         {/* Title block */}
-        <div ref={headRef} className="max-w-3xl mb-6">
+        <div ref={headRef} className="max-w-3xl mx-auto mb-6 text-center">
           <h2
             className="font-display text-cream leading-[0.9]"
             style={{
               fontSize: visible ? "clamp(48px, 6vw, 88px)" : "32px",
               opacity: visible ? 1 : 0,
               transform: visible ? "scale(1)" : "scale(0.7)",
-              transformOrigin: "left center",
+              transformOrigin: "center center",
               transition:
                 "opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1), font-size 0.9s cubic-bezier(0.16,1,0.3,1)",
             }}
@@ -184,9 +184,9 @@ const Testimonials = () => {
           </h2>
         </div>
 
-        {/* Animated underline */}
+        {/* Animated underline — centered */}
         <div
-          className="mb-16"
+          className="mx-auto mb-16"
           style={{
             height: 2,
             backgroundColor: "#00C2D4",
