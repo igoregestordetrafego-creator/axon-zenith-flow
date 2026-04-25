@@ -296,15 +296,12 @@
 }
 
 /* ============================================
-   SERVICE CARDS — hover glow on closing line + outer/inner glow
+   SERVICE CARDS — hover state (border + bg + glow + closing)
 ============================================ */
 @layer components {
-  .service-card {
-    transition:
-      background-color 300ms ease,
-      box-shadow 400ms ease;
-  }
   .service-card:hover {
+    background-color: #0F1A1A !important;
+    border-left-color: #00C2D4 !important;
     box-shadow:
       0 0 40px rgba(0, 194, 212, 0.08),
       inset 0 0 20px rgba(0, 194, 212, 0.03);
