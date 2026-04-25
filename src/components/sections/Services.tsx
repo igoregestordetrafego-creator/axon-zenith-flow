@@ -149,9 +149,9 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
       />
 
       <div
-        className="service-card__num font-display absolute top-4 right-6 text-cream leading-none select-none pointer-events-none origin-top-right opacity-[0.06] scale-100 group-hover:opacity-[0.15] group-hover:scale-105"
+        className="service-card__num font-display absolute -bottom-4 -right-2 text-cream leading-none select-none pointer-events-none origin-bottom-right opacity-[0.06] scale-100 group-hover:opacity-[0.12] group-hover:scale-105"
         style={{
-          fontSize: "clamp(80px, 10vw, 140px)",
+          fontSize: "clamp(60px, 7vw, 110px)",
           transition: "opacity 300ms ease, transform 300ms ease",
         }}
         aria-hidden
@@ -160,11 +160,11 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
       </div>
 
       <h3
-        className="font-display max-w-2xl relative normal-case"
+        className="font-display max-w-2xl relative normal-case pr-20"
         style={{
-          fontSize: "clamp(28px, 3vw, 42px)",
+          fontSize: "clamp(26px, 2.6vw, 36px)",
           fontWeight: 700,
-          lineHeight: 1.1,
+          lineHeight: 1.15,
           color: "#F5F0E8",
         }}
       >
