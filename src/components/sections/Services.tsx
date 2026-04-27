@@ -174,15 +174,29 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
         className="font-display relative pr-28 md:pr-36"
         style={{
           fontFamily: "'Bebas Neue', sans-serif",
-          fontSize: "clamp(36px, 4vw, 56px)",
+          fontSize: "clamp(32px, 3.5vw, 48px)",
           textTransform: "none",
           fontWeight: 700,
           lineHeight: 1.05,
           color: "#F5F0E8",
         }}
       >
-        {service.title}
+        {service.name}
       </h3>
+
+      <p
+        className="max-w-2xl"
+        style={{
+          fontFamily: "'Sora', system-ui, sans-serif",
+          fontWeight: 600,
+          fontSize: 18,
+          color: "#00C2D4",
+          lineHeight: 1.4,
+          marginTop: 12,
+        }}
+      >
+        {service.title}
+      </p>
 
       <p
         className="max-w-2xl"
