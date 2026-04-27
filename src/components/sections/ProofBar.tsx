@@ -12,16 +12,16 @@ interface Metric {
 }
 
 const METRICS: Metric[] = [
-  { value: "R$ 25M+", label: "Em mídia gerenciada com retorno documentado", numeric: 25, format: (n) => `R$ ${n}M+` },
+  { value: "+R$ 5M", label: "Em mídia gerenciada com retorno documentado", numeric: 5, format: (n) => `+R$ ${n}M` },
   { value: "+R$ 10M", label: "Faturados para os nossos clientes", numeric: 10, format: (n) => `+R$ ${n}M` },
   { value: "11x – 27x", label: "Retorno sobre investimento médio nas contas ativas" },
   { value: "+120%", label: "Crescimento médio dos e-commerces após entrada da Axon", numeric: 120, format: (n) => `+${n}%` },
   { value: "+73%", label: "Aumento na taxa de conversão com o sistema comercial", numeric: 73, format: (n) => `+${n}%` },
   { value: "+30%", label: "Aumento no ticket médio após reestruturação de oferta e CRM", numeric: 30, format: (n) => `+${n}%` },
-  { value: "R$ 2M+", label: "Economizados em folha salarial via automações", numeric: 2, format: (n) => `R$ ${n}M+` },
-  { value: "350 mil h", label: "Devolvidas às equipes por processos automatizados", numeric: 350, format: (n) => `${n} mil h` },
-  { value: "R$ 3M+", label: "Faturamento gerado por novos canais de venda implementados", numeric: 3, format: (n) => `R$ ${n}M+` },
-  { value: "20x +", label: "Conversão dos scripts e estrutura comercial vs. atendimento convencional", numeric: 20, format: (n) => `${n}x +` },
+  { value: "+R$ 2M", label: "Economizados em folha salarial via automações", numeric: 2, format: (n) => `+R$ ${n}M` },
+  { value: "+350 mil h", label: "Devolvidas às equipes por processos automatizados", numeric: 350, format: (n) => `+${n} mil h` },
+  { value: "+R$ 3M", label: "Faturamento gerado por novos canais de venda implementados", numeric: 3, format: (n) => `+R$ ${n}M` },
+  { value: "+20x", label: "Conversão dos scripts e estrutura comercial vs. atendimento convencional", numeric: 20, format: (n) => `+${n}x` },
 ];
 
 const CountUp = ({ target, format, active }: { target: number; format: (n: number) => string; active: boolean }) => {
