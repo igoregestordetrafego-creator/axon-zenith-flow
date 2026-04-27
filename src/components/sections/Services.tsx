@@ -28,6 +28,7 @@ const SERVICES: Service[] = [
   },
   {
     num: "02",
+    name: "Estrutura de Aquisição e Mídia Paga",
     title: "Não gerenciamos anúncios. Construímos máquinas de aquisição.",
     subtitle:
       "Qualquer agência coloca dinheiro no Meta e chama de estratégia. A gente constrói o sistema inteiro — criativo, audiência, oferta, funil e dado.",
