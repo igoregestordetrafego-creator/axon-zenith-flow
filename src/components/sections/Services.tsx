@@ -60,6 +60,7 @@ const SERVICES: Service[] = [
   },
   {
     num: "04",
+    name: "Dados e Métricas",
     title: "Relatório bonito não paga boleto. Dado real, sim.",
     subtitle:
       "A maioria das agências te mostra o que quer que tu veja. A gente mostra o que precisa ser resolvido — mesmo que doa.",
@@ -74,6 +75,7 @@ const SERVICES: Service[] = [
   },
   {
     num: "05",
+    name: "Gestão de Loja",
     title: "Tua loja não se gerencia sozinha. E gestor júnior não resolve.",
     subtitle:
       "Vitrine, oferta, ficha, banner, precificação — cada detalhe impacta conversão. A gente cuida de tudo como se fosse a nossa loja.",
@@ -88,6 +90,7 @@ const SERVICES: Service[] = [
   },
   {
     num: "06",
+    name: "CRM e Retenção",
     title: "Quem já comprou de ti é teu ativo mais barato. Para de ignorar.",
     subtitle:
       "Conquistar cliente novo custa 7x mais do que vender pra quem já conhece a marca. A gente constrói o sistema que faz essa base comprar de novo — e de novo.",
@@ -102,6 +105,7 @@ const SERVICES: Service[] = [
   },
   {
     num: "07",
+    name: "Automação e IA",
     title: "Processo manual é custo disfarçado de rotina.",
     subtitle:
       "Cada hora gasta em tarefa repetitiva é uma hora que não foi gasta em crescimento. A gente mapeia, automatiza e implementa.",
@@ -116,6 +120,7 @@ const SERVICES: Service[] = [
   },
   {
     num: "08",
+    name: "Implementação Comercial",
     title: "Estratégia que fica no papel não fatura nada.",
     subtitle:
       "A maioria das consultorias entrega 40 páginas e some. A gente fica até funcionar — script, processo, time, funil e resultado.",
