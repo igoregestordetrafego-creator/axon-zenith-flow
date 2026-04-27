@@ -16,7 +16,7 @@ const Logo = ({ className }: LogoProps) => {
       <img
         src={logoImg}
         alt="Axon Growth"
-        className="h-14 md:h-16 w-auto select-none"
+        className="h-10 md:h-12 w-auto select-none"
         draggable={false}
       />
     </div>
