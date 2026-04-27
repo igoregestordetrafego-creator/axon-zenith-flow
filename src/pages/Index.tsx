@@ -16,14 +16,16 @@ const Index = () => {
       <CustomCursor />
       <FlowLines />
       <Navbar />
-      <main className="relative z-[1]">
+      <main className="relative z-[2]">
         <Hero />
         <ProofBar />
         <Services />
         <Testimonials />
         <FinalCTA />
       </main>
-      <Footer />
+      <div className="relative z-[2]">
+        <Footer />
+      </div>
     </div>
   );
 };

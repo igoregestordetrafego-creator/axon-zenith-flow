@@ -2,43 +2,88 @@ import { useEffect, useRef } from "react";
 
 /**
  * Global animated background flow lines.
- * Fixed canvas covering the viewport. Independent of scroll/cursor.
- * Renders 6–12 cyan organic curves at any time, each living 4–8s with
- * fade-in / travel / fade-out lifecycle.
+ * Fixed canvas covering the viewport, behind all content but above the background.
+ * Renders 8–12 cyan curved particles travelling along organic bezier paths.
  */
 
-interface Line {
-  x: number;
-  y: number;
-  // direction unit vector
-  dx: number;
-  dy: number;
-  length: number;       // total path length (200–400)
-  duration: number;     // ms (4000–8000)
+interface Particle {
+  // bezier control points (start, c1, c2, end) — defines the curved trajectory
+  x0: number; y0: number;
+  cx1: number; cy1: number;
+  cx2: number; cy2: number;
+  x1: number; y1: number;
+  // travel
+  progress: number;     // 0..1 along the bezier
+  speed: number;        // increment per frame (mapped from px/frame via length)
+  width: number;        // 0.5–1.5
+  alphaPeak: number;    // 0.12
+  trail: number;        // visible trail portion (0..1 of curve)
+  life: number;         // ms total
   born: number;         // performance.now()
-  curve: number;        // bezier offset magnitude (organic curve)
-  curveDir: number;     // perpendicular direction sign
-  alphaPeak: number;    // 0.03–0.07
 }
 
-const MIN_LINES = 6;
-const MAX_LINES = 12;
+const MIN_PARTICLES = 8;
+const MAX_PARTICLES = 12;
 
 const rand = (min: number, max: number) => Math.random() * (max - min) + min;
 
-function spawnLine(w: number, h: number, now: number): Line {
-  const angle = Math.random() * Math.PI * 2;
+function spawnParticle(w: number, h: number, now: number): Particle {
+  const length = rand(80, 220);
+  // direction: -30..+30 degrees from horizontal, randomly flipped left/right
+  const deg = rand(-30, 30);
+  const rad = (deg * Math.PI) / 180;
+  const dirSign = Math.random() > 0.5 ? 1 : -1;
+  const dx = Math.cos(rad) * dirSign;
+  const dy = Math.sin(rad);
+
+  const x0 = rand(0, w);
+  const y0 = rand(0, h);
+  const x1 = x0 + dx * length;
+  const y1 = y0 + dy * length;
+
+  // organic curve — perpendicular bow on control points
+  const px = -dy;
+  const py = dx;
+  const bow1 = rand(20, 60) * (Math.random() > 0.5 ? 1 : -1);
+  const bow2 = rand(20, 60) * (Math.random() > 0.5 ? 1 : -1);
+
+  const cx1 = x0 + dx * length * 0.33 + px * bow1;
+  const cy1 = y0 + dy * length * 0.33 + py * bow1;
+  const cx2 = x0 + dx * length * 0.66 + px * bow2;
+  const cy2 = y0 + dy * length * 0.66 + py * bow2;
+
+  // speed: 0.3–0.8 px/frame → progress increment
+  const pxPerFrame = rand(0.3, 0.8);
+  const speed = pxPerFrame / length;
+
   return {
-    x: rand(0, w),
-    y: rand(0, h),
-    dx: Math.cos(angle),
-    dy: Math.sin(angle),
-    length: rand(200, 400),
-    duration: rand(4000, 8000),
+    x0, y0, cx1, cy1, cx2, cy2, x1, y1,
+    progress: 0,
+    speed,
+    width: rand(0.5, 1.5),
+    alphaPeak: 0.12,
+    trail: rand(0.25, 0.4),
+    life: rand(4000, 9000),
     born: now,
-    curve: rand(20, 60),
-    curveDir: Math.random() > 0.5 ? 1 : -1,
-    alphaPeak: rand(0.03, 0.07),
+  };
+}
+
+// cubic bezier point at t
+function bezierPoint(
+  t: number,
+  x0: number, y0: number,
+  cx1: number, cy1: number,
+  cx2: number, cy2: number,
+  x1: number, y1: number,
+) {
+  const it = 1 - t;
+  const b0 = it * it * it;
+  const b1 = 3 * it * it * t;
+  const b2 = 3 * it * t * t;
+  const b3 = t * t * t;
+  return {
+    x: b0 * x0 + b1 * cx1 + b2 * cx2 + b3 * x1,
+    y: b0 * y0 + b1 * cy1 + b2 * cy2 + b3 * y1,
   };
 }
 
@@ -68,13 +113,14 @@ const FlowLines = () => {
     resize();
     window.addEventListener("resize", resize);
 
-    const lines: Line[] = [];
-    const target = Math.floor(rand(MIN_LINES, MAX_LINES + 1));
+    const particles: Particle[] = [];
+    const target = Math.floor(rand(MIN_PARTICLES, MAX_PARTICLES + 1));
     const now0 = performance.now();
     for (let i = 0; i < target; i++) {
-      // stagger initial births so they don't all fade together
-      const l = spawnLine(w, h, now0 - rand(0, 4000));
-      lines.push(l);
+      const p = spawnParticle(w, h, now0);
+      // stagger initial progress so they don't all start together
+      p.progress = Math.random();
+      particles.push(p);
     }
 
     let raf = 0;
@@ -82,59 +128,49 @@ const FlowLines = () => {
       const now = performance.now();
       ctx.clearRect(0, 0, w, h);
 
-      for (let i = lines.length - 1; i >= 0; i--) {
-        const l = lines[i];
-        const t = (now - l.born) / l.duration; // 0..1
-        if (t >= 1) {
-          // respawn — keep within target window 6..12
-          const desired = Math.floor(rand(MIN_LINES, MAX_LINES + 1));
-          if (lines.length > desired) {
-            lines.splice(i, 1);
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.progress += p.speed;
+
+        const ageRatio = (now - p.born) / p.life;
+        const offscreen =
+          p.x1 < -50 || p.x1 > w + 50 || p.y1 < -50 || p.y1 > h + 50;
+
+        if (p.progress >= 1 || ageRatio >= 1 || offscreen) {
+          // respawn immediately, keeping count within target window
+          const desired = Math.floor(rand(MIN_PARTICLES, MAX_PARTICLES + 1));
+          if (particles.length > desired) {
+            particles.splice(i, 1);
           } else {
-            lines[i] = spawnLine(w, h, now);
+            particles[i] = spawnParticle(w, h, now);
           }
           continue;
         }
 
-        // fade envelope: in 0..0.2, hold 0.2..0.8, out 0.8..1
-        let env: number;
-        if (t < 0.2) env = t / 0.2;
-        else if (t > 0.8) env = (1 - t) / 0.2;
-        else env = 1;
-        const alpha = l.alphaPeak * env;
-
-        // travel progress — head moves along the path
-        const head = t; // 0..1 of total length
-        const tailLen = 0.35; // visible trailing portion
-
-        // sample points along organic curve (slight perpendicular bow)
-        const px = -l.dy * l.curveDir;
-        const py = l.dx * l.curveDir;
+        // opacity envelope: 0 → peak at mid → 0 at end (sine-shaped)
+        const env = Math.sin(p.progress * Math.PI);
+        const alpha = p.alphaPeak * env;
 
         ctx.strokeStyle = `rgba(0, 194, 212, ${alpha})`;
-        ctx.lineWidth = 1;
+        ctx.lineWidth = p.width;
         ctx.lineCap = "round";
         ctx.beginPath();
 
-        const samples = 24;
+        const samples = 20;
+        const head = p.progress;
+        const tailStart = Math.max(0, head - p.trail);
         let started = false;
         for (let s = 0; s <= samples; s++) {
-          const u = s / samples; // 0..1 along total path
-          // only draw the visible trailing portion behind the head
-          if (u > head) break;
-          if (u < head - tailLen) continue;
-
-          const dist = u * l.length;
-          // organic curve: sine bow perpendicular to direction
-          const bow = Math.sin(u * Math.PI) * l.curve;
-          const x = l.x + l.dx * dist + px * bow;
-          const y = l.y + l.dy * dist + py * bow;
-
+          const u = tailStart + ((head - tailStart) * s) / samples;
+          const pt = bezierPoint(
+            u,
+            p.x0, p.y0, p.cx1, p.cy1, p.cx2, p.cy2, p.x1, p.y1,
+          );
           if (!started) {
-            ctx.moveTo(x, y);
+            ctx.moveTo(pt.x, pt.y);
             started = true;
           } else {
-            ctx.lineTo(x, y);
+            ctx.lineTo(pt.x, pt.y);
           }
         }
         ctx.stroke();
@@ -155,7 +191,7 @@ const FlowLines = () => {
       ref={canvasRef}
       aria-hidden
       className="pointer-events-none fixed inset-0"
-      style={{ zIndex: 0, width: "100vw", height: "100vh" }}
+      style={{ zIndex: 1, width: "100vw", height: "100vh" }}
     />
   );
 };
