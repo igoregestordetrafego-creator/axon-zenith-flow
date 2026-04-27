@@ -61,7 +61,7 @@ function spawnParticle(w: number, h: number, now: number): Particle {
     progress: 0,
     speed,
     width: rand(0.5, 1.5),
-    alphaPeak: 0.12,
+    alphaPeak: 0.3, // TEST: temporariamente alto para confirmar visibilidade (produção: 0.12)
     trail: rand(0.25, 0.4),
     life: rand(4000, 9000),
     born: now,
