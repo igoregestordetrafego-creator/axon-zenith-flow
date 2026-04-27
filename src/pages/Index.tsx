@@ -24,6 +24,7 @@ const Index = () => {
         <FinalCTA />
       </main>
       <Footer />
+      
     </div>
   );
 };
