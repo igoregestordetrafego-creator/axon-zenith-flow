@@ -13,6 +13,7 @@ interface Service {
 const SERVICES: Service[] = [
   {
     num: "01",
+    name: "Sites, Sistemas, Páginas e E-commerces",
     title: "Estrutura digital que converte. Não só encanta.",
     subtitle:
       "Página bonita sem estratégia é catálogo. A gente constrói com CRO, copy e identidade visual trabalhando juntos desde o zero.",
