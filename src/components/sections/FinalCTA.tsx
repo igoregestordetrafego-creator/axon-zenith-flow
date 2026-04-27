@@ -1,7 +1,13 @@
 import { useReveal } from "@/hooks/useReveal";
 
 const WHATSAPP_URL = "https://wa.me/message/RHHL5HTXCEZWJ1";
-const WORDS = ["TUA", "CONCORRÊNCIA", "JÁ ESTÁ", "CRESCENDO", "COM", "A GENTE."];
+
+type Line = { text: string; accent?: boolean };
+const TITLE_LINES: Line[][] = [
+  [{ text: "A CONCORRÊNCIA" }],
+  [{ text: "JÁ ESTÁ " }, { text: "CRESCENDO", accent: true }],
+  [{ text: "COM A GENTE." }],
+];
 
 const FinalCTA = () => {
   const { ref, visible } = useReveal<HTMLDivElement>({ threshold: 0.2 });
