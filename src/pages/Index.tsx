@@ -23,8 +23,9 @@ const Index = () => {
         <Testimonials />
         <FinalCTA />
       </main>
-      <Footer />
-      
+      <div className="relative z-[2]">
+        <Footer />
+      </div>
     </div>
   );
 };
