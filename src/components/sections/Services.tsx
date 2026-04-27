@@ -3,6 +3,7 @@ import { useReveal } from "@/hooks/useReveal";
 
 interface Service {
   num: string;
+  name: string;
   title: string;
   subtitle: string;
   items: string[];
@@ -12,6 +13,7 @@ interface Service {
 const SERVICES: Service[] = [
   {
     num: "01",
+    name: "Sites, Sistemas, Páginas e E-commerces",
     title: "Estrutura digital que converte. Não só encanta.",
     subtitle:
       "Página bonita sem estratégia é catálogo. A gente constrói com CRO, copy e identidade visual trabalhando juntos desde o zero.",
@@ -26,6 +28,7 @@ const SERVICES: Service[] = [
   },
   {
     num: "02",
+    name: "Estrutura de Aquisição e Mídia Paga",
     title: "Não gerenciamos anúncios. Construímos máquinas de aquisição.",
     subtitle:
       "Qualquer agência coloca dinheiro no Meta e chama de estratégia. A gente constrói o sistema inteiro — criativo, audiência, oferta, funil e dado.",
@@ -42,6 +45,7 @@ const SERVICES: Service[] = [
   },
   {
     num: "03",
+    name: "Calendário Estratégico",
     title: "Enquanto o teu concorrente pensa no mês, a gente já está no próximo trimestre.",
     subtitle:
       "Calendário estratégico não é planilha de data comemorativa. É inteligência comercial aplicada — quando atacar, qual oferta, em qual canal, com qual margem.",
@@ -56,6 +60,7 @@ const SERVICES: Service[] = [
   },
   {
     num: "04",
+    name: "Dados e Métricas",
     title: "Relatório bonito não paga boleto. Dado real, sim.",
     subtitle:
       "A maioria das agências te mostra o que quer que tu veja. A gente mostra o que precisa ser resolvido — mesmo que doa.",
@@ -70,6 +75,7 @@ const SERVICES: Service[] = [
   },
   {
     num: "05",
+    name: "Gestão de Loja",
     title: "Tua loja não se gerencia sozinha. E gestor júnior não resolve.",
     subtitle:
       "Vitrine, oferta, ficha, banner, precificação — cada detalhe impacta conversão. A gente cuida de tudo como se fosse a nossa loja.",
@@ -84,6 +90,7 @@ const SERVICES: Service[] = [
   },
   {
     num: "06",
+    name: "CRM e Retenção",
     title: "Quem já comprou de ti é teu ativo mais barato. Para de ignorar.",
     subtitle:
       "Conquistar cliente novo custa 7x mais do que vender pra quem já conhece a marca. A gente constrói o sistema que faz essa base comprar de novo — e de novo.",
@@ -98,6 +105,7 @@ const SERVICES: Service[] = [
   },
   {
     num: "07",
+    name: "Automação e IA",
     title: "Processo manual é custo disfarçado de rotina.",
     subtitle:
       "Cada hora gasta em tarefa repetitiva é uma hora que não foi gasta em crescimento. A gente mapeia, automatiza e implementa.",
@@ -112,6 +120,7 @@ const SERVICES: Service[] = [
   },
   {
     num: "08",
+    name: "Implementação Comercial",
     title: "Estratégia que fica no papel não fatura nada.",
     subtitle:
       "A maioria das consultorias entrega 40 páginas e some. A gente fica até funcionar — script, processo, time, funil e resultado.",
@@ -165,15 +174,29 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
         className="font-display relative pr-28 md:pr-36"
         style={{
           fontFamily: "'Bebas Neue', sans-serif",
-          fontSize: "clamp(36px, 4vw, 56px)",
+          fontSize: "clamp(32px, 3.5vw, 48px)",
           textTransform: "none",
           fontWeight: 700,
           lineHeight: 1.05,
           color: "#F5F0E8",
         }}
       >
-        {service.title}
+        {service.name}
       </h3>
+
+      <p
+        className="max-w-2xl"
+        style={{
+          fontFamily: "'Sora', system-ui, sans-serif",
+          fontWeight: 600,
+          fontSize: 18,
+          color: "#00C2D4",
+          lineHeight: 1.4,
+          marginTop: 12,
+        }}
+      >
+        {service.title}
+      </p>
 
       <p
         className="max-w-2xl"
