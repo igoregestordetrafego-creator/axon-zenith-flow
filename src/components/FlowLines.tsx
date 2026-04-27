@@ -1,74 +1,73 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Global animated background flow lines.
- * Fixed canvas covering the viewport, behind all content but above the background.
- * Renders 8–12 cyan curved particles travelling along organic bezier paths.
+ * Global animated energy flow lines.
+ * Fixed canvas covering the viewport, pointer-events:none so it never blocks UI.
+ * Renders many cyan curved particles travelling along organic bezier paths,
+ * with a pulse on the alpha so the whole field feels alive.
  */
 
 interface Particle {
-  // bezier control points (start, c1, c2, end) — defines the curved trajectory
   x0: number; y0: number;
   cx1: number; cy1: number;
   cx2: number; cy2: number;
   x1: number; y1: number;
-  // travel
-  progress: number;     // 0..1 along the bezier
-  speed: number;        // increment per frame (mapped from px/frame via length)
-  width: number;        // 0.5–1.5
-  alphaPeak: number;    // 0.12
-  trail: number;        // visible trail portion (0..1 of curve)
-  life: number;         // ms total
-  born: number;         // performance.now()
+  progress: number;
+  speed: number;
+  width: number;
+  alphaPeak: number;
+  trail: number;
+  life: number;
+  born: number;
+  pulsePhase: number;   // offset for the pulsing
+  pulseSpeed: number;   // rad/ms
 }
 
-const MIN_PARTICLES = 8;
-const MAX_PARTICLES = 12;
+const MIN_PARTICLES = 18;
+const MAX_PARTICLES = 26;
 
 const rand = (min: number, max: number) => Math.random() * (max - min) + min;
 
 function spawnParticle(w: number, h: number, now: number): Particle {
-  const length = rand(80, 220);
-  // direction: -30..+30 degrees from horizontal, randomly flipped left/right
-  const deg = rand(-30, 30);
+  const length = rand(120, 320);
+  const deg = rand(-35, 35);
   const rad = (deg * Math.PI) / 180;
   const dirSign = Math.random() > 0.5 ? 1 : -1;
   const dx = Math.cos(rad) * dirSign;
   const dy = Math.sin(rad);
 
-  const x0 = rand(0, w);
-  const y0 = rand(0, h);
+  const x0 = rand(-60, w + 60);
+  const y0 = rand(-60, h + 60);
   const x1 = x0 + dx * length;
   const y1 = y0 + dy * length;
 
-  // organic curve — perpendicular bow on control points
   const px = -dy;
   const py = dx;
-  const bow1 = rand(20, 60) * (Math.random() > 0.5 ? 1 : -1);
-  const bow2 = rand(20, 60) * (Math.random() > 0.5 ? 1 : -1);
+  const bow1 = rand(30, 80) * (Math.random() > 0.5 ? 1 : -1);
+  const bow2 = rand(30, 80) * (Math.random() > 0.5 ? 1 : -1);
 
   const cx1 = x0 + dx * length * 0.33 + px * bow1;
   const cy1 = y0 + dy * length * 0.33 + py * bow1;
   const cx2 = x0 + dx * length * 0.66 + px * bow2;
   const cy2 = y0 + dy * length * 0.66 + py * bow2;
 
-  // speed: 0.3–0.8 px/frame → progress increment
-  const pxPerFrame = rand(0.3, 0.8);
+  const pxPerFrame = rand(0.5, 1.2);
   const speed = pxPerFrame / length;
 
   return {
     x0, y0, cx1, cy1, cx2, cy2, x1, y1,
     progress: 0,
     speed,
-    width: rand(0.5, 1.5),
-    alphaPeak: 0.3, // TEST: temporariamente alto para confirmar visibilidade (produção: 0.12)
-    trail: rand(0.25, 0.4),
-    life: rand(4000, 9000),
+    width: rand(0.6, 1.6),
+    alphaPeak: rand(0.18, 0.32),
+    trail: rand(0.3, 0.5),
+    life: rand(4500, 9500),
     born: now,
+    pulsePhase: Math.random() * Math.PI * 2,
+    pulseSpeed: rand(0.0015, 0.0035),
   };
 }
 
-// cubic bezier point at t
 function bezierPoint(
   t: number,
   x0: number, y0: number,
@@ -118,7 +117,6 @@ const FlowLines = () => {
     const now0 = performance.now();
     for (let i = 0; i < target; i++) {
       const p = spawnParticle(w, h, now0);
-      // stagger initial progress so they don't all start together
       p.progress = Math.random();
       particles.push(p);
     }
@@ -128,16 +126,18 @@ const FlowLines = () => {
       const now = performance.now();
       ctx.clearRect(0, 0, w, h);
 
+      // additive-ish glow blend
+      ctx.globalCompositeOperation = "lighter";
+
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
         p.progress += p.speed;
 
         const ageRatio = (now - p.born) / p.life;
         const offscreen =
-          p.x1 < -50 || p.x1 > w + 50 || p.y1 < -50 || p.y1 > h + 50;
+          p.x1 < -80 || p.x1 > w + 80 || p.y1 < -80 || p.y1 > h + 80;
 
         if (p.progress >= 1 || ageRatio >= 1 || offscreen) {
-          // respawn immediately, keeping count within target window
           const desired = Math.floor(rand(MIN_PARTICLES, MAX_PARTICLES + 1));
           if (particles.length > desired) {
             particles.splice(i, 1);
@@ -147,16 +147,20 @@ const FlowLines = () => {
           continue;
         }
 
-        // opacity envelope: 0 → peak at mid → 0 at end (sine-shaped)
+        // travel envelope: fade in/peak/out along the curve
         const env = Math.sin(p.progress * Math.PI);
-        const alpha = p.alphaPeak * env;
+        // pulse: 0.6..1 multiplier so it visibly breathes
+        const pulse = 0.6 + 0.4 * (0.5 + 0.5 * Math.sin(p.pulsePhase + now * p.pulseSpeed));
+        const alpha = p.alphaPeak * env * pulse;
 
         ctx.strokeStyle = `rgba(0, 194, 212, ${alpha})`;
         ctx.lineWidth = p.width;
         ctx.lineCap = "round";
+        ctx.shadowColor = "rgba(0, 194, 212, 0.6)";
+        ctx.shadowBlur = 6;
         ctx.beginPath();
 
-        const samples = 20;
+        const samples = 22;
         const head = p.progress;
         const tailStart = Math.max(0, head - p.trail);
         let started = false;
@@ -175,6 +179,10 @@ const FlowLines = () => {
         }
         ctx.stroke();
       }
+
+      // reset for next frame
+      ctx.shadowBlur = 0;
+      ctx.globalCompositeOperation = "source-over";
 
       raf = requestAnimationFrame(draw);
     };
