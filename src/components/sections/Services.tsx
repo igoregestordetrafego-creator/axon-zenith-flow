@@ -45,6 +45,7 @@ const SERVICES: Service[] = [
   },
   {
     num: "03",
+    name: "Calendário Estratégico",
     title: "Enquanto o teu concorrente pensa no mês, a gente já está no próximo trimestre.",
     subtitle:
       "Calendário estratégico não é planilha de data comemorativa. É inteligência comercial aplicada — quando atacar, qual oferta, em qual canal, com qual margem.",
