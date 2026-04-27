@@ -3,6 +3,7 @@ import { useReveal } from "@/hooks/useReveal";
 
 interface Service {
   num: string;
+  name: string;
   title: string;
   subtitle: string;
   items: string[];
