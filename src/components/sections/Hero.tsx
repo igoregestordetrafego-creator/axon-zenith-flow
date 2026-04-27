@@ -121,20 +121,25 @@ const Hero = () => {
             </span>
           </h1>
 
-          <div className="mt-10 max-w-2xl space-y-4 mx-auto">
+          <div className="mt-10 max-w-3xl space-y-4 mx-auto">
             <p
               className="text-cream/90 text-lg md:text-xl leading-relaxed font-medium opacity-0"
               style={{ animation: "word-rise 0.7s ease-out 0.45s forwards" }}
             >
-              Mapeamos, ajustamos e escalamos toda a tua operação,
-              da estrutura ao anúncio, do dado à venda.
+              Mapeamos, ajustamos e escalamos completamente todos os seus processos
+              com foco em resolver gargalos que nunca te mostraram.
+            </p>
+            <p
+              className="text-cream/90 text-lg md:text-xl leading-relaxed font-medium opacity-0"
+              style={{ animation: "word-rise 0.7s ease-out 0.55s forwards" }}
+            >
+              Tráfego pago é apenas um nó de uma estrutura altamente complexa.
             </p>
             <p
               className="font-sora italic text-gold/90 text-base md:text-lg opacity-0"
-              style={{ animation: "word-rise 0.7s ease-out 0.6s forwards" }}
+              style={{ animation: "word-rise 0.7s ease-out 0.7s forwards" }}
             >
-              A Axon é o parceiro que a tua marca sempre precisou
-              e nunca encontrou.
+              Conte com a Axon para escalar a sua operação, seja ela qual for.
             </p>
           </div>
 
