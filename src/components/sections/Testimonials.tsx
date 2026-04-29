@@ -20,17 +20,10 @@ interface Testimonial {
 const TESTIMONIALS: Testimonial[] = [
   {
     type: "video",
-    name: "Em breve",
+    name: "",
     role: "Depoimento em vídeo",
     videoSrc: "https://www.youtube.com/embed/m18xRjpWFDI?rel=0&modestbranding=1&showinfo=0",
     videoFormat: "short",
-  },
-  {
-    type: "text",
-    name: "Em breve",
-    role: "CEO • Cliente Axon",
-    quote:
-      "Espaço reservado para depoimento real. A Axon trabalha com discrição — em breve aqui estarão palavras de quem cresceu com a gente.",
   },
   {
     type: "whatsapp",
@@ -39,15 +32,8 @@ const TESTIMONIALS: Testimonial[] = [
     image: whatsapp1,
   },
   {
-    type: "text",
-    name: "Em breve",
-    role: "Founder • Cliente Axon",
-    quote:
-      "Outro espaço reservado. Os números falam, mas as palavras de quem viveu o processo falam mais alto. Em breve.",
-  },
-  {
     type: "video",
-    name: "Em breve",
+    name: "",
     role: "Case em vídeo",
     videoSrc: "https://www.youtube.com/embed/hEDdVOrdfbA?rel=0&modestbranding=1&showinfo=0",
     videoFormat: "horizontal",
