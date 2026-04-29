@@ -56,12 +56,13 @@ const TestimonialCard = ({ t, index, visible }: { t: Testimonial; index: number;
   if (t.type === "whatsapp") {
     return (
       <div
-        className="group relative h-full flex flex-col transition-all duration-500"
+        className="group relative h-full flex flex-col justify-start transition-all duration-500"
         style={{
           background: "#0D0D0D",
           border: "1px solid #1E1E1E",
           borderRadius: 12,
           padding: 24,
+          minHeight: 520,
           opacity: visible ? 1 : 0,
           transform: visible ? "translateX(0)" : "translateX(-100px)",
           transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 180}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 180}ms, border-color 0.3s, box-shadow 0.3s`,
@@ -90,8 +91,10 @@ const TestimonialCard = ({ t, index, visible }: { t: Testimonial; index: number;
 
   return (
     <div
-      className="relative bg-background border border-border p-8 transition-all duration-500 hover:border-[#00C2D4]/60 h-full overflow-hidden flex flex-col"
+      className="relative border border-border p-8 transition-all duration-500 hover:border-[#00C2D4]/60 h-full overflow-hidden flex flex-col justify-start"
       style={{
+        background: "#0D0D0D",
+        minHeight: 520,
         opacity: visible ? 1 : 0,
         transform: visible ? "translateX(0)" : "translateX(-100px)",
         transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 180}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 180}ms, border-color 0.3s`,
