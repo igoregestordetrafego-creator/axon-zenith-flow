@@ -20,17 +20,10 @@ interface Testimonial {
 const TESTIMONIALS: Testimonial[] = [
   {
     type: "video",
-    name: "Em breve",
+    name: "",
     role: "Depoimento em vídeo",
     videoSrc: "https://www.youtube.com/embed/m18xRjpWFDI?rel=0&modestbranding=1&showinfo=0",
     videoFormat: "short",
-  },
-  {
-    type: "text",
-    name: "Em breve",
-    role: "CEO • Cliente Axon",
-    quote:
-      "Espaço reservado para depoimento real. A Axon trabalha com discrição — em breve aqui estarão palavras de quem cresceu com a gente.",
   },
   {
     type: "whatsapp",
@@ -39,15 +32,8 @@ const TESTIMONIALS: Testimonial[] = [
     image: whatsapp1,
   },
   {
-    type: "text",
-    name: "Em breve",
-    role: "Founder • Cliente Axon",
-    quote:
-      "Outro espaço reservado. Os números falam, mas as palavras de quem viveu o processo falam mais alto. Em breve.",
-  },
-  {
     type: "video",
-    name: "Em breve",
+    name: "",
     role: "Case em vídeo",
     videoSrc: "https://www.youtube.com/embed/hEDdVOrdfbA?rel=0&modestbranding=1&showinfo=0",
     videoFormat: "horizontal",
@@ -89,7 +75,7 @@ const TestimonialCard = ({ t, index, visible }: { t: Testimonial; index: number;
           e.currentTarget.style.boxShadow = "none";
         }}
       >
-        <div className="mb-5 overflow-hidden" style={{ borderRadius: 8 }}>
+        <div className="overflow-hidden" style={{ borderRadius: 8 }}>
           <img
             src={t.image}
             alt={`Print de WhatsApp — ${t.name}`}
@@ -97,14 +83,6 @@ const TestimonialCard = ({ t, index, visible }: { t: Testimonial; index: number;
             style={{ borderRadius: 8 }}
             loading="lazy"
           />
-        </div>
-        <div className="mt-auto">
-          <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: 14, color: "#F5F0E8" }}>
-            {t.name}
-          </div>
-          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "#6B6B6B", marginTop: 2 }}>
-            {t.role}
-          </div>
         </div>
       </div>
     );
@@ -130,9 +108,9 @@ const TestimonialCard = ({ t, index, visible }: { t: Testimonial; index: number;
         </span>
       )}
 
-      {/* Media area — uniform height across all cards so identifications align */}
+      {/* Media area */}
       <div
-        className="relative flex-1 flex flex-col mb-6"
+        className="relative flex-1 flex flex-col"
         style={{ minHeight: t.type === "video" && t.videoFormat === "short" ? 480 : 260 }}
       >
         {t.type === "video" && t.videoSrc && t.videoFormat === "short" && (
@@ -195,14 +173,6 @@ const TestimonialCard = ({ t, index, visible }: { t: Testimonial; index: number;
         )}
       </div>
 
-      {/* Footer pinned to bottom — same position across all cards */}
-      <div className="relative flex items-center gap-3 pt-4 border-t border-border mt-auto">
-        <div className="w-10 h-10 rounded-full bg-background-alt border border-border shrink-0" />
-        <div>
-          <div className="text-cream font-sora font-semibold text-sm">{t.name}</div>
-          <div className="text-cream-dim text-xs">{t.role}</div>
-        </div>
-      </div>
     </div>
   );
 };
