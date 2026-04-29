@@ -9,10 +9,18 @@ interface Testimonial {
   role: string;
   quote?: string;
   thumbnail?: string;
+  videoSrc?: string;
+  videoFormat?: "short" | "horizontal";
 }
 
 const TESTIMONIALS: Testimonial[] = [
-  { type: "video", name: "Em breve", role: "Depoimento em vídeo" },
+  {
+    type: "video",
+    name: "Em breve",
+    role: "Depoimento em vídeo",
+    videoSrc: "https://www.youtube.com/embed/m18xRjpWFDI?rel=0&modestbranding=1&showinfo=0",
+    videoFormat: "short",
+  },
   {
     type: "text",
     name: "Em breve",
@@ -28,7 +36,13 @@ const TESTIMONIALS: Testimonial[] = [
     quote:
       "Outro espaço reservado. Os números falam, mas as palavras de quem viveu o processo falam mais alto. Em breve.",
   },
-  { type: "video", name: "Em breve", role: "Case em vídeo" },
+  {
+    type: "video",
+    name: "Em breve",
+    role: "Case em vídeo",
+    videoSrc: "https://www.youtube.com/embed/hEDdVOrdfbA?rel=0&modestbranding=1&showinfo=0",
+    videoFormat: "horizontal",
+  },
   { type: "image", name: "Em breve", role: "Resultado documentado" },
 ];
 
@@ -54,21 +68,49 @@ const TestimonialCard = ({ t, index, visible }: { t: Testimonial; index: number;
       )}
 
       {/* Media area — uniform height across all cards so identifications align */}
-      <div className="relative flex-1 flex flex-col mb-6 min-h-[260px]">
-        {t.type === "video" && (
-          <div className="relative flex-1 bg-background-alt border border-border flex items-center justify-center group cursor-pointer overflow-hidden transition-colors hover:border-[#00C2D4]">
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 transition-colors duration-300" />
+      <div
+        className="relative flex-1 flex flex-col mb-6"
+        style={{ minHeight: t.type === "video" && t.videoFormat === "short" ? 480 : 260 }}
+      >
+        {t.type === "video" && t.videoSrc && t.videoFormat === "short" && (
+          <div className="flex-1 flex items-center justify-center">
             <div
-              className="relative w-16 h-16 rounded-full border border-cream-dim flex items-center justify-center transition-all duration-300 group-hover:scale-[1.15] group-hover:border-[#00C2D4]"
-              style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
+              className="relative w-full"
+              style={{ maxWidth: 320, aspectRatio: "9 / 16" }}
             >
-              <div
-                className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ boxShadow: "0 0 32px rgba(0,194,212,0.6), inset 0 0 16px rgba(0,194,212,0.3)" }}
+              <iframe
+                src={t.videoSrc}
+                title={t.role}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                  borderRadius: 12,
+                  display: "block",
+                }}
               />
-              <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
-                <path d="M2 2 L18 11 L2 20 Z" fill="hsl(var(--cream))" />
-              </svg>
+            </div>
+          </div>
+        )}
+
+        {t.type === "video" && t.videoSrc && t.videoFormat === "horizontal" && (
+          <div className="flex-1 flex items-center">
+            <div className="relative w-full" style={{ aspectRatio: "16 / 9" }}>
+              <iframe
+                src={t.videoSrc}
+                title={t.role}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                  borderRadius: 12,
+                  display: "block",
+                }}
+              />
             </div>
           </div>
         )}
