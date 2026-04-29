@@ -112,8 +112,7 @@ const ProofBar = () => {
               transform: visible ? "translateY(0)" : "translateY(20px)",
             }}
           >
-            <span style={{ color: "#00C2D4" }}>Números</span> que a maioria das agências
-            não tem coragem de mostrar.
+            <span style={{ color: "#00C2D4" }}>Números</span> que mostram o valor dos nossos resultados.
           </h2>
         </div>
       </div>
