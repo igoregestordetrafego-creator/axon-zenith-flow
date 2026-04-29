@@ -52,14 +52,16 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-const TestimonialCard = ({ t, index, visible }: { t: Testimonial; index: number; visible: boolean }) => {
+const TestimonialCard = ({ t, index, visible, isActive }: { t: Testimonial; index: number; visible: boolean; isActive: boolean }) => {
+  const baseBorder = isActive ? "#00C2D4" : "#1E1E1E";
+
   if (t.type === "whatsapp") {
     return (
       <div
         className="group relative h-full flex flex-col justify-start transition-all duration-500"
         style={{
           background: "#0D0D0D",
-          border: "1px solid #1E1E1E",
+          border: `1px solid ${baseBorder}`,
           borderRadius: 12,
           padding: 24,
           minHeight: 520,
@@ -72,7 +74,7 @@ const TestimonialCard = ({ t, index, visible }: { t: Testimonial; index: number;
           e.currentTarget.style.boxShadow = "0 0 24px rgba(0, 194, 212, 0.18)";
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = "#1E1E1E";
+          e.currentTarget.style.borderColor = baseBorder;
           e.currentTarget.style.boxShadow = "none";
         }}
       >
@@ -91,9 +93,11 @@ const TestimonialCard = ({ t, index, visible }: { t: Testimonial; index: number;
 
   return (
     <div
-      className="relative border border-border p-8 transition-all duration-500 hover:border-[#00C2D4]/60 h-full overflow-hidden flex flex-col justify-start"
+      className="relative p-8 transition-all duration-500 h-full overflow-hidden flex flex-col justify-start"
       style={{
         background: "#0D0D0D",
+        border: `1px solid ${baseBorder}`,
+        borderRadius: 12,
         minHeight: 520,
         opacity: visible ? 1 : 0,
         transform: visible ? "translateX(0)" : "translateX(-100px)",
@@ -166,7 +170,7 @@ const TestimonialCard = ({ t, index, visible }: { t: Testimonial; index: number;
         )}
 
         {t.type === "image" && (
-          <div className="relative flex-1 bg-background-alt border border-[#1E1E1E] flex items-center justify-center transition-colors hover:border-[#00C2D4]">
+          <div className="relative flex-1 flex items-center justify-center" style={{ background: "#0D0D0D" }}>
             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="text-cream-dim/40">
               <rect x="6" y="10" width="36" height="28" stroke="currentColor" strokeWidth="1.5" />
               <circle cx="16" cy="20" r="3" stroke="currentColor" strokeWidth="1.5" />
@@ -289,7 +293,7 @@ const Testimonials = () => {
                   key={i}
                   className="min-w-0 shrink-0 grow-0 basis-full md:basis-1/3"
                 >
-                  <TestimonialCard t={t} index={i} visible={visible} />
+                  <TestimonialCard t={t} index={i} visible={visible} isActive={selectedIndex === i} />
                 </div>
               ))}
             </div>
