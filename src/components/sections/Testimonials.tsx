@@ -2,15 +2,19 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
+import whatsapp1 from "@/assets/whatsapp-1.jpeg";
+import whatsapp2 from "@/assets/whatsapp-2.jpeg";
+import whatsapp3 from "@/assets/whatsapp-3.jpeg";
 
 interface Testimonial {
-  type: "video" | "text" | "image";
+  type: "video" | "text" | "image" | "whatsapp";
   name: string;
   role: string;
   quote?: string;
   thumbnail?: string;
   videoSrc?: string;
   videoFormat?: "short" | "horizontal";
+  image?: string;
 }
 
 const TESTIMONIALS: Testimonial[] = [
@@ -28,7 +32,12 @@ const TESTIMONIALS: Testimonial[] = [
     quote:
       "Espaço reservado para depoimento real. A Axon trabalha com discrição — em breve aqui estarão palavras de quem cresceu com a gente.",
   },
-  { type: "image", name: "Em breve", role: "Print de resultado" },
+  {
+    type: "whatsapp",
+    name: "Julia",
+    role: "Cliente Axon • E-commerce",
+    image: whatsapp1,
+  },
   {
     type: "text",
     name: "Em breve",
@@ -43,7 +52,18 @@ const TESTIMONIALS: Testimonial[] = [
     videoSrc: "https://www.youtube.com/embed/hEDdVOrdfbA?rel=0&modestbranding=1&showinfo=0",
     videoFormat: "horizontal",
   },
-  { type: "image", name: "Em breve", role: "Resultado documentado" },
+  {
+    type: "whatsapp",
+    name: "Vinicius",
+    role: "Cliente Axon • Kyron",
+    image: whatsapp2,
+  },
+  {
+    type: "whatsapp",
+    name: "Equipe Clínica",
+    role: "Cliente Axon • Estética",
+    image: whatsapp3,
+  },
 ];
 
 const TestimonialCard = ({ t, index, visible }: { t: Testimonial; index: number; visible: boolean }) => {
