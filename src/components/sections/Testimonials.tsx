@@ -67,6 +67,49 @@ const TESTIMONIALS: Testimonial[] = [
 ];
 
 const TestimonialCard = ({ t, index, visible }: { t: Testimonial; index: number; visible: boolean }) => {
+  if (t.type === "whatsapp") {
+    return (
+      <div
+        className="group relative h-full flex flex-col transition-all duration-500"
+        style={{
+          background: "#0D0D0D",
+          border: "1px solid #1E1E1E",
+          borderRadius: 12,
+          padding: 24,
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateX(0)" : "translateX(-100px)",
+          transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 180}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 180}ms, border-color 0.3s, box-shadow 0.3s`,
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderColor = "#00C2D4";
+          e.currentTarget.style.boxShadow = "0 0 24px rgba(0, 194, 212, 0.18)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderColor = "#1E1E1E";
+          e.currentTarget.style.boxShadow = "none";
+        }}
+      >
+        <div className="mb-5 overflow-hidden" style={{ borderRadius: 8 }}>
+          <img
+            src={t.image}
+            alt={`Print de WhatsApp — ${t.name}`}
+            className="w-full h-auto block"
+            style={{ borderRadius: 8 }}
+            loading="lazy"
+          />
+        </div>
+        <div className="mt-auto">
+          <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: 14, color: "#F5F0E8" }}>
+            {t.name}
+          </div>
+          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "#6B6B6B", marginTop: 2 }}>
+            {t.role}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       className="relative bg-background border border-border p-8 transition-all duration-500 hover:border-[#00C2D4]/60 h-full overflow-hidden flex flex-col"
