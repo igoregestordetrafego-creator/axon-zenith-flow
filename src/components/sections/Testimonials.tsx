@@ -77,7 +77,6 @@ const TestimonialCard = ({ t, index }: { t: Testimonial; index: number }) => {
     overflow: "hidden",
     width: "100%",
     breakInside: "avoid",
-    WebkitColumnBreakInside: "avoid",
     pageBreakInside: "avoid",
     marginBottom: 16,
     display: "block",
