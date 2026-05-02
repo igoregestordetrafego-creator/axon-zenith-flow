@@ -1,17 +1,13 @@
-import { useEffect, useRef, useState, useCallback } from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useReveal } from "@/hooks/useReveal";
 import whatsapp1 from "@/assets/whatsapp-1.jpeg";
 import whatsapp2 from "@/assets/whatsapp-2.jpeg";
 import whatsapp3 from "@/assets/whatsapp-3.jpeg";
 
 interface Testimonial {
-  type: "video" | "text" | "image" | "whatsapp";
+  type: "video" | "whatsapp";
   name: string;
   role: string;
-  quote?: string;
-  thumbnail?: string;
   videoSrc?: string;
   videoFormat?: "short" | "horizontal";
   image?: string;
@@ -52,198 +48,95 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-const TestimonialCard = ({ t, index, visible, isActive }: { t: Testimonial; index: number; visible: boolean; isActive: boolean }) => {
-  const baseBorder = isActive ? "#00C2D4" : "#1E1E1E";
+const TestimonialCard = ({ t, index }: { t: Testimonial; index: number }) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisible(true);
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  const baseStyle: React.CSSProperties = {
+    background: "#0D0D0D",
+    border: "1px solid #1E1E1E",
+    borderRadius: 12,
+    overflow: "hidden",
+    width: "100%",
+    breakInside: "avoid",
+    WebkitColumnBreakInside: "avoid",
+    pageBreakInside: "avoid",
+    marginBottom: 16,
+    display: "block",
+    opacity: visible ? 1 : 0,
+    transform: visible ? "translateY(0)" : "translateY(40px)",
+    transition: `opacity 0.6s cubic-bezier(0.16,1,0.3,1) ${index * 100}ms, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${index * 100}ms, border-color 300ms, box-shadow 300ms`,
+  };
+
+  const handleEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.currentTarget.style.borderColor = "#00C2D4";
+    e.currentTarget.style.boxShadow = "0 0 24px rgba(0,194,212,0.08)";
+  };
+  const handleLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.currentTarget.style.borderColor = "#1E1E1E";
+    e.currentTarget.style.boxShadow = "none";
+  };
 
   if (t.type === "whatsapp") {
     return (
-      <div
-        className="group relative h-full flex flex-col justify-start transition-all duration-500"
-        style={{
-          background: "#0D0D0D",
-          border: `1px solid ${baseBorder}`,
-          borderRadius: 12,
-          padding: 24,
-          minHeight: 520,
-          opacity: visible ? 1 : 0,
-          transform: visible ? "translateX(0)" : "translateX(-100px)",
-          transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 180}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 180}ms, border-color 0.3s, box-shadow 0.3s`,
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.borderColor = "#00C2D4";
-          e.currentTarget.style.boxShadow = "0 0 24px rgba(0, 194, 212, 0.18)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = baseBorder;
-          e.currentTarget.style.boxShadow = "none";
-        }}
-      >
-        <div className="overflow-hidden" style={{ borderRadius: 8 }}>
-          <img
-            src={t.image}
-            alt={`Print de WhatsApp — ${t.name}`}
-            className="w-full h-auto block"
-            style={{ borderRadius: 8 }}
-            loading="lazy"
+      <div ref={ref} style={baseStyle} onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+        <img
+          src={t.image}
+          alt={`Print de WhatsApp — ${t.name}`}
+          className="w-full h-auto block"
+          loading="lazy"
+        />
+      </div>
+    );
+  }
+
+  if (t.type === "video" && t.videoSrc) {
+    const ratio = t.videoFormat === "short" ? "9 / 16" : "16 / 9";
+    return (
+      <div ref={ref} style={baseStyle} onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+        <div style={{ width: "100%", aspectRatio: ratio, position: "relative" }}>
+          <iframe
+            src={t.videoSrc}
+            title={t.role}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              border: "none",
+              display: "block",
+            }}
           />
         </div>
       </div>
     );
   }
 
-  return (
-    <div
-      className="relative p-8 transition-all duration-500 h-full overflow-hidden flex flex-col justify-start"
-      style={{
-        background: "#0D0D0D",
-        border: `1px solid ${baseBorder}`,
-        borderRadius: 12,
-        minHeight: 520,
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateX(0)" : "translateX(-100px)",
-        transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 180}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 180}ms, border-color 0.3s`,
-      }}
-    >
-      {/* Decorative giant quote */}
-      {t.type === "text" && (
-        <span
-          className="font-display absolute top-2 left-2 leading-none select-none pointer-events-none"
-          style={{ fontSize: "180px", color: "rgba(0, 194, 212, 0.06)" }}
-          aria-hidden
-        >
-          "
-        </span>
-      )}
-
-      {/* Media area */}
-      <div
-        className="relative flex-1 flex flex-col"
-        style={{ minHeight: t.type === "video" && t.videoFormat === "short" ? 480 : 260 }}
-      >
-        {t.type === "video" && t.videoSrc && t.videoFormat === "short" && (
-          <div className="flex-1 flex items-center justify-center">
-            <div
-              className="relative w-full"
-              style={{ maxWidth: 320, aspectRatio: "9 / 16" }}
-            >
-              <iframe
-                src={t.videoSrc}
-                title={t.role}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  border: "none",
-                  borderRadius: 12,
-                  display: "block",
-                }}
-              />
-            </div>
-          </div>
-        )}
-
-        {t.type === "video" && t.videoSrc && t.videoFormat === "horizontal" && (
-          <div className="flex-1 flex items-center">
-            <div className="relative w-full" style={{ aspectRatio: "16 / 9" }}>
-              <iframe
-                src={t.videoSrc}
-                title={t.role}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  border: "none",
-                  borderRadius: 12,
-                  display: "block",
-                }}
-              />
-            </div>
-          </div>
-        )}
-
-        {t.type === "text" && (
-          <p className="relative font-sora text-cream/90 text-base leading-relaxed pt-8">
-            {t.quote}
-          </p>
-        )}
-
-        {t.type === "image" && (
-          <div className="relative flex-1 flex items-center justify-center" style={{ background: "#0D0D0D" }}>
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="text-cream-dim/40">
-              <rect x="6" y="10" width="36" height="28" stroke="currentColor" strokeWidth="1.5" />
-              <circle cx="16" cy="20" r="3" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M6 32 L18 22 L28 30 L42 18" stroke="currentColor" strokeWidth="1.5" />
-            </svg>
-          </div>
-        )}
-      </div>
-
-    </div>
-  );
+  return null;
 };
 
 const Testimonials = () => {
   const { ref: headRef, visible } = useReveal<HTMLDivElement>({ threshold: 0.2 });
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    align: "start",
-    dragFree: false,
-    duration: 30,
-  });
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
-  const autoplayRef = useRef<number | null>(null);
-  const resumeTimeoutRef = useRef<number | null>(null);
-  const [isHovering, setIsHovering] = useState(false);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    setScrollSnaps(emblaApi.scrollSnapList());
-    emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
-    onSelect();
-  }, [emblaApi, onSelect]);
-
-  // Autoplay
-  const startAutoplay = useCallback(() => {
-    if (autoplayRef.current) window.clearInterval(autoplayRef.current);
-    autoplayRef.current = window.setInterval(() => {
-      if (emblaApi && !isHovering) emblaApi.scrollNext();
-    }, 5000);
-  }, [emblaApi, isHovering]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    startAutoplay();
-    return () => {
-      if (autoplayRef.current) window.clearInterval(autoplayRef.current);
-      if (resumeTimeoutRef.current) window.clearTimeout(resumeTimeoutRef.current);
-    };
-  }, [emblaApi, startAutoplay]);
-
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-    if (resumeTimeoutRef.current) window.clearTimeout(resumeTimeoutRef.current);
-    if (autoplayRef.current) window.clearInterval(autoplayRef.current);
-  };
-  const handleMouseLeave = () => {
-    if (resumeTimeoutRef.current) window.clearTimeout(resumeTimeoutRef.current);
-    resumeTimeoutRef.current = window.setTimeout(() => {
-      setIsHovering(false);
-      startAutoplay();
-    }, 2000);
-  };
-
-  const scrollPrev = () => emblaApi?.scrollPrev();
-  const scrollNext = () => emblaApi?.scrollNext();
-  const scrollTo = (i: number) => emblaApi?.scrollTo(i);
 
   return (
     <section id="depoimentos" className="py-28 md:py-40">
@@ -277,62 +170,29 @@ const Testimonials = () => {
           }}
         />
 
-        {/* Carousel */}
+        {/* Masonry via CSS columns */}
         <div
-          className="relative"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          className="testimonials-masonry"
+          style={{
+            columnGap: 16,
+          }}
         >
-          <div
-            className="overflow-hidden cursor-grab active:cursor-grabbing"
-            ref={emblaRef}
-          >
-            <div className="flex gap-6">
-              {TESTIMONIALS.map((t, i) => (
-                <div
-                  key={i}
-                  className="min-w-0 shrink-0 grow-0 basis-full md:basis-1/3"
-                >
-                  <TestimonialCard t={t} index={i} visible={visible} isActive={selectedIndex === i} />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Nav arrows */}
-          <button
-            onClick={scrollPrev}
-            aria-label="Anterior"
-            className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center transition-all hover:scale-110 z-10"
-            style={{ background: "rgba(0,194,212,0.1)", color: "#00C2D4" }}
-          >
-            <ChevronLeft size={22} />
-          </button>
-          <button
-            onClick={scrollNext}
-            aria-label="Próximo"
-            className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center transition-all hover:scale-110 z-10"
-            style={{ background: "rgba(0,194,212,0.1)", color: "#00C2D4" }}
-          >
-            <ChevronRight size={22} />
-          </button>
-        </div>
-
-        {/* Progress dots */}
-        <div className="flex items-center justify-center gap-2 mt-8">
-          {scrollSnaps.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => scrollTo(i)}
-              aria-label={`Ir ao slide ${i + 1}`}
-              className="h-[6px] rounded-full transition-all duration-300"
-              style={{
-                width: selectedIndex === i ? 24 : 6,
-                backgroundColor: selectedIndex === i ? "#00C2D4" : "#1E1E1E",
-              }}
-            />
+          {TESTIMONIALS.map((t, i) => (
+            <TestimonialCard key={i} t={t} index={i} />
           ))}
         </div>
+
+        <style>{`
+          .testimonials-masonry {
+            column-count: 1;
+          }
+          @media (min-width: 768px) {
+            .testimonials-masonry { column-count: 2; }
+          }
+          @media (min-width: 1024px) {
+            .testimonials-masonry { column-count: 3; }
+          }
+        `}</style>
       </div>
     </section>
   );
