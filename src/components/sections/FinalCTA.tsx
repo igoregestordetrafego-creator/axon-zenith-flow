@@ -1,6 +1,5 @@
 import { useReveal } from "@/hooks/useReveal";
-
-const WHATSAPP_URL = "https://wa.me/message/RHHL5HTXCEZWJ1";
+import { WHATSAPP_URL } from "@/lib/constants";
 
 type Line = { text: string; accent?: boolean };
 const TITLE_LINES: Line[][] = [
@@ -86,14 +85,14 @@ const FinalCTA = () => {
           </a>
         </div>
 
-        <p
+        <div
           className="mt-6 text-cream-dim text-xs md:text-sm leading-relaxed transition-opacity duration-700"
           style={{ opacity: visible ? 1 : 0, transitionDelay: "1100ms" }}
         >
-          Sem enrolação. Sem apresentação genérica.
-          <br />
-          Uma conversa direta sobre o que tá travando o teu crescimento.
-        </p>
+          <p>Sem enrolação.</p>
+          <p>Sem apresentação genérica.</p>
+          <p className="mt-2">Uma conversa direta sobre o que tá travando o teu crescimento.</p>
+        </div>
       </div>
     </section>
   );

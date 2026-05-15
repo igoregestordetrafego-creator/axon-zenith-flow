@@ -4,7 +4,9 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/sections/Hero";
 import ProofBar from "@/components/sections/ProofBar";
 import Services from "@/components/sections/Services";
+import Sobre from "@/components/sections/Sobre";
 import Testimonials from "@/components/sections/Testimonials";
+import FAQ from "@/components/sections/FAQ";
 import FinalCTA from "@/components/sections/FinalCTA";
 import Footer from "@/components/sections/Footer";
 
@@ -18,7 +20,9 @@ const Index = () => {
         <Hero />
         <ProofBar />
         <Services />
+        <Sobre />
         <Testimonials />
+        <FAQ />
         <FinalCTA />
       </main>
       <div className="relative z-[2]">

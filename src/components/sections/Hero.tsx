@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-
-const WHATSAPP_URL = "https://wa.me/message/RHHL5HTXCEZWJ1";
+import { WHATSAPP_URL } from "@/lib/constants";
 
 const Hero = () => {
   const dotsRef = useRef<HTMLCanvasElement>(null);
