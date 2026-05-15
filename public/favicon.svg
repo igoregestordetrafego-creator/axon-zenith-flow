@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" rx="4" fill="#0A0A0A"/>
+  <!-- Bird silhouette: facing right, wings up, tail down-left -->
+  <path fill="#F5F0E8" d="M2,15 L6,3 L13,7 L19,3 L30,13 L26,17 L22,20 L18,25 L12,31 L9,29 L5,22 Z"/>
+  <!-- Wing feather cuts -->
+  <path fill="#0A0A0A" d="M4,19 L7,12 L10,17 Z"/>
+  <path fill="#0A0A0A" d="M7,23 L10,15 L12,21 Z"/>
+  <!-- Head/beak facet for depth -->
+  <path fill="#0A0A0A" fill-opacity="0.3" d="M19,3 L30,13 L23,12 Z"/>
+</svg>
