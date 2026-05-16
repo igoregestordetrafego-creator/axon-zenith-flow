@@ -211,6 +211,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
       data-index={index}
       className="service-card group relative overflow-hidden mx-auto w-full"
       style={{
+        "--card-i": index,
         backgroundColor: "#0D0D0D",
         borderRadius: 2,
         padding: 48,
@@ -223,7 +224,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
         transform: visible ? "translateX(0)" : "translateX(80px)",
         transition:
           "opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1), background-color 0.3s ease, border-color 0.3s ease, box-shadow 400ms ease",
-      }}
+      } as React.CSSProperties}
     >
       <div
         className="service-card__num font-display absolute top-4 right-6 text-cream leading-none select-none pointer-events-none origin-top-right opacity-[0.06] scale-100 group-hover:opacity-[0.15] group-hover:scale-105"

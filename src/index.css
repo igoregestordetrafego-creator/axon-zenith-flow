@@ -313,6 +313,29 @@
 }
 
 /* ============================================
+   SERVICES — mobile sticky card stack
+   Cards sobrepõem os anteriores ao rolar.
+   Reverso automático ao subir.
+============================================ */
+@media (max-width: 767px) {
+  .service-card {
+    position: sticky !important;
+    top: 72px;
+    z-index: calc(var(--card-i, 0) + 2) !important;
+    margin-bottom: 0 !important;
+    /* padding compacto no mobile */
+    padding: 24px !important;
+    padding-top: 44px !important;
+    padding-bottom: 44px !important;
+    /* cards sempre visíveis — sem animação de reveal no mobile */
+    opacity: 1 !important;
+    transform: none !important;
+    /* sombra superior indica profundidade na pilha */
+    box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.7) !important;
+  }
+}
+
+/* ============================================
    METRICS MARQUEE — infinite auto-scroll
 ============================================ */
 @layer components {
