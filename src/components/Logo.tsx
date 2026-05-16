@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import birdImg from "@/assets/axon-bird.png";
+import logoImg from "@/assets/axon-logo.png";
 
 interface LogoProps {
   className?: string;
@@ -7,24 +7,13 @@ interface LogoProps {
 
 const Logo = ({ className }: LogoProps) => {
   return (
-    <div className={cn("flex items-center gap-3", className)}>
+    <div className={cn("flex items-center", className)}>
       <img
-        src={birdImg}
+        src={logoImg}
         alt="Axon Growth"
-        className="h-9 md:h-11 w-auto select-none"
+        className="h-10 md:h-12 w-auto select-none"
         draggable={false}
       />
-      <span
-        style={{
-          fontFamily: "'Bebas Neue', sans-serif",
-          fontSize: "clamp(18px, 2vw, 22px)",
-          letterSpacing: "0.12em",
-          color: "#F5F0E8",
-          lineHeight: 1,
-        }}
-      >
-        AXON GROWTH
-      </span>
     </div>
   );
 };
