@@ -1,24 +1,30 @@
 import { cn } from "@/lib/utils";
-import logoImg from "@/assets/axon-logo.png";
+import birdImg from "@/assets/axon-bird.png";
 
 interface LogoProps {
   className?: string;
-  /** Kept for API compatibility — the wordmark is part of the image. */
-  showText?: boolean;
 }
 
-/**
- * Axon Growth official logo (bird mark + wordmark baked in).
- */
 const Logo = ({ className }: LogoProps) => {
   return (
-    <div className={cn("flex items-center", className)}>
+    <div className={cn("flex items-center gap-3", className)}>
       <img
-        src={logoImg}
+        src={birdImg}
         alt="Axon Growth"
-        className="h-10 md:h-12 w-auto select-none"
+        className="h-9 md:h-11 w-auto select-none"
         draggable={false}
       />
+      <span
+        style={{
+          fontFamily: "'Bebas Neue', sans-serif",
+          fontSize: "clamp(18px, 2vw, 22px)",
+          letterSpacing: "0.12em",
+          color: "#F5F0E8",
+          lineHeight: 1,
+        }}
+      >
+        AXON GROWTH
+      </span>
     </div>
   );
 };
