@@ -43,7 +43,7 @@ const SERVICES: Service[] = [
     ],
     subtitle: [
       "Qualquer agência coloca dinheiro no Meta e chama de estratégia.",
-      "A gente constrói o sistema inteiro: criativo, audiência, oferta, funil e dado.",
+      "Construímos o sistema inteiro: criativo, audiência, oferta, funil e dado.",
     ],
     items: [
       "Diagnóstico completo antes de investir R$ 1 em mídia",
@@ -51,7 +51,7 @@ const SERVICES: Service[] = [
       "Criativo com intenção, não só arte bonita",
       "Gestão ativa de Meta, Google, TikTok e YouTube Ads",
       "Teste estruturado de ângulos, ofertas e formatos",
-      "Leitura de dado real, não o que o gerenciador quer que tu veja",
+      "Leitura de dado real, não o que o gerenciador quer que você veja",
       "Escala com controle, sem queimar verba em audiência saturada",
     ],
     closing: [
@@ -89,8 +89,8 @@ const SERVICES: Service[] = [
       "Dado real, sim.",
     ],
     subtitle: [
-      "A maioria das agências te mostra o que quer que tu veja.",
-      "A gente mostra o que precisa ser resolvido.",
+      "A maioria das agências mostra o que quer que você veja.",
+      "Mostramos o que precisa ser resolvido.",
       "Mesmo que doa.",
     ],
     items: [
@@ -101,8 +101,8 @@ const SERVICES: Service[] = [
       "Decisões baseadas em dado, não em achismo",
     ],
     closing: [
-      "Se tu não sabe onde tá perdendo dinheiro, alguém sabe.",
-      "E não é tu.",
+      "Se você não sabe onde está perdendo dinheiro, alguém sabe.",
+      "E não é você.",
     ],
   },
   {
@@ -114,7 +114,7 @@ const SERVICES: Service[] = [
     ],
     subtitle: [
       "Vitrine, oferta, ficha, banner, precificação: cada detalhe impacta conversão.",
-      "A gente cuida de tudo como se fosse a nossa loja.",
+      "Cuidamos de tudo como se fosse nossa.",
     ],
     items: [
       "Gestão de ofertas e precificação estratégica",
@@ -135,8 +135,8 @@ const SERVICES: Service[] = [
       "Para de ignorar.",
     ],
     subtitle: [
-      "Conquistar cliente novo custa 7x mais do que vender pra quem já conhece a marca.",
-      "A gente constrói o sistema que faz essa base comprar de novo, e de novo.",
+      "Conquistar cliente novo custa 7x mais do que vender para quem já conhece a marca.",
+      "Construímos o sistema que faz essa base comprar de novo, e de novo.",
     ],
     items: [
       "Fluxos de e-mail, WhatsApp e SMS estratégicos",
@@ -158,7 +158,7 @@ const SERVICES: Service[] = [
     ],
     subtitle: [
       "Cada hora gasta em tarefa repetitiva é uma hora que não foi gasta em crescimento.",
-      "A gente mapeia, automatiza e implementa.",
+      "Mapeamos, automatizamos e implementamos.",
     ],
     items: [
       "Mapeamento de gargalos operacionais",
@@ -181,7 +181,7 @@ const SERVICES: Service[] = [
     ],
     subtitle: [
       "A maioria das consultorias entrega 40 páginas e some.",
-      "A gente fica até funcionar: script, processo, time, funil e resultado.",
+      "Ficamos até funcionar: script, processo, time, funil e resultado.",
     ],
     items: [
       "Diagnóstico completo da operação comercial atual",
@@ -354,7 +354,7 @@ const Services = () => {
   const counter = `${String(activeIndex + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
 
   return (
-    <section id="servicos" className="relative bg-background py-28 md:py-40">
+    <section id="servicos" className="relative py-28 md:py-40">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           <div className="lg:col-span-5">

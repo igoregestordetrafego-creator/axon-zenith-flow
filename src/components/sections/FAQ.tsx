@@ -21,15 +21,15 @@ const FAQS: { q: string; a: string[] }[] = [
     a: [
       "Não temos uma regra fixa, mas trabalhamos com clientes que investem a partir de R$ 3.000/mês em mídia.",
       "Abaixo disso, o volume de dado não sustenta uma gestão estratégica real.",
-      "O que importa não é o quanto tu investe hoje.",
-      "É o quanto tu está disposto a construir.",
+      "O que importa não é o quanto você investe hoje.",
+      "É o quanto você está disposto a construir.",
     ],
   },
   {
     q: "Como funciona o processo de entrada?",
     a: [
       "Primeiro contato pelo WhatsApp.",
-      "Se fizer sentido para ambos os lados, partimos para um diagnóstico da tua operação: tráfego, funil, dados, comercial.",
+      "Se fizer sentido para ambos os lados, partimos para um diagnóstico da sua operação: tráfego, funil, dados, comercial.",
       "Com base nisso, montamos um plano e apresentamos o escopo.",
       "Sem apresentação genérica.",
       "Sem proposta de gaveta.",
@@ -59,7 +59,7 @@ const FAQS: { q: string; a: string[] }[] = [
       "Acesso direto ao time via WhatsApp.",
       "Reuniões estratégicas quinzenais ou mensais dependendo do escopo.",
       "Dashboard atualizado com dados reais, não relatório de vaidade.",
-      "Tu sempre sabe o que está acontecendo, por quê e o que vem a seguir.",
+      "Você sempre sabe o que está acontecendo, por quê e o que vem a seguir.",
     ],
   },
   {
@@ -76,7 +76,7 @@ const FAQS: { q: string; a: string[] }[] = [
     a: [
       "A maioria das agências vende serviço.",
       "A Axon constrói operação.",
-      "A diferença está no diagnóstico antes de qualquer execução, na visão sistêmica do negócio inteiro e no fato de que quem atende a tua conta é quem decide, não um analista júnior seguindo checklist.",
+      "A diferença está no diagnóstico antes de qualquer execução, na visão sistêmica do negócio inteiro e no fato de que quem atende a sua conta é quem decide, não um analista júnior seguindo checklist.",
     ],
   },
 ];
@@ -92,7 +92,7 @@ const FAQ = () => {
   const { ref: headRef, visible } = useReveal<HTMLDivElement>({ threshold: 0.2 });
 
   return (
-    <section id="faq" className="relative bg-background py-28 md:py-40">
+    <section id="faq" className="relative py-28 md:py-40">
       <div className="container">
         <div className="max-w-3xl mx-auto">
           <div ref={headRef} className="mb-14">

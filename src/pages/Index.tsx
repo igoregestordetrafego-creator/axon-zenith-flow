@@ -1,4 +1,5 @@
 import CustomCursor from "@/components/CustomCursor";
+import DotGrid from "@/components/DotGrid";
 import LoadingScreen from "@/components/LoadingScreen";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/sections/Hero";
@@ -13,6 +14,7 @@ import Footer from "@/components/sections/Footer";
 const Index = () => {
   return (
     <div className="relative min-h-screen bg-background text-foreground">
+      <DotGrid />
       <LoadingScreen />
       <CustomCursor />
       <Navbar />

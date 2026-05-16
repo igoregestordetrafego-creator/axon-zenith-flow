@@ -20,7 +20,7 @@ const PILLARS = [
     title: "Da estratégia\nà execução.",
     body: [
       "Consultoria que fica no papel não fatura nada.",
-      "A gente fica até funcionar: script, processo, time e resultado.",
+      "Ficamos até funcionar: script, processo, time e resultado.",
     ],
   },
 ];
@@ -137,7 +137,7 @@ const Sobre = () => {
                   marginBottom: 12,
                 }}
               >
-                A gente constrói diferente.
+                Construímos diferente.
               </p>
               <p
                 style={{

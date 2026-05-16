@@ -5,7 +5,7 @@ type Line = { text: string; accent?: boolean };
 const TITLE_LINES: Line[][] = [
   [{ text: "A CONCORRÊNCIA" }],
   [{ text: "JÁ ESTÁ " }, { text: "CRESCENDO", accent: true }],
-  [{ text: "COM A GENTE." }],
+  [{ text: "CONOSCO." }],
 ];
 
 const FinalCTA = () => {
@@ -14,7 +14,7 @@ const FinalCTA = () => {
   return (
     <section
       id="contato"
-      className="relative min-h-[80vh] flex items-center justify-center bg-background py-28 overflow-hidden"
+      className="relative min-h-[80vh] flex items-center justify-center py-28 overflow-hidden"
     >
       {/* radial glow */}
       <div className="absolute inset-0 bg-radial-glow pointer-events-none" />
@@ -60,7 +60,7 @@ const FinalCTA = () => {
             lineHeight: 1.6,
           }}
         >
-          <p>Enquanto tu lê isso, alguém do seu mercado já tomou a decisão certa.</p>
+          <p>Enquanto você lê isso, alguém do seu mercado já tomou a decisão certa.</p>
           <p>A Axon trabalha com poucos clientes.</p>
           <p style={{ marginTop: 8 }}>De propósito.</p>
           <p className="text-cream font-medium" style={{ color: "#F5F0E8" }}>Se tem vaga, é agora.</p>
@@ -91,7 +91,7 @@ const FinalCTA = () => {
         >
           <p>Sem enrolação.</p>
           <p>Sem apresentação genérica.</p>
-          <p className="mt-2">Uma conversa direta sobre o que tá travando o teu crescimento.</p>
+          <p className="mt-2">Uma conversa direta sobre o que está travando o seu crescimento.</p>
         </div>
       </div>
     </section>

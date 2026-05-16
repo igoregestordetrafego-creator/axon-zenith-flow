@@ -1,72 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { WHATSAPP_URL } from "@/lib/constants";
 
 const Hero = () => {
-  const dotsRef = useRef<HTMLCanvasElement>(null);
   const [showArrow, setShowArrow] = useState(true);
 
-  // Magnetic dot grid background
   useEffect(() => {
-    const canvas = dotsRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let w = 0, h = 0;
-    let dpr = window.devicePixelRatio || 1;
-    let mouse = { x: -9999, y: -9999 };
-
-    const resize = () => {
-      w = canvas.clientWidth;
-      h = canvas.clientHeight;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      ctx.scale(dpr, dpr);
-    };
-
-    const onMouse = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    };
-    const onLeave = () => { mouse.x = -9999; mouse.y = -9999; };
-
-    let raf = 0;
-    const draw = () => {
-      ctx.clearRect(0, 0, w, h);
-      const gap = 28;
-      for (let x = gap; x < w; x += gap) {
-        for (let y = gap; y < h; y += gap) {
-          const dx = x - mouse.x;
-          const dy = y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          const inField = dist < 160;
-          const alpha = inField ? 0.04 + (1 - dist / 160) * 0.35 : 0.04;
-          ctx.fillStyle = `hsla(36, 35%, 93%, ${alpha})`;
-          ctx.beginPath();
-          ctx.arc(x, y, inField ? 1.5 : 1, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
-      raf = requestAnimationFrame(draw);
-    };
-
-    resize();
-    draw();
-    window.addEventListener("resize", resize);
-    window.addEventListener("mousemove", onMouse);
-    canvas.addEventListener("mouseleave", onLeave);
-
     const onScroll = () => setShowArrow(window.scrollY < 200);
     window.addEventListener("scroll", onScroll, { passive: true });
-
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
-      window.removeEventListener("mousemove", onMouse);
-      canvas.removeEventListener("mouseleave", onLeave);
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
@@ -74,13 +15,6 @@ const Hero = () => {
       id="hero"
       className="relative min-h-screen w-full flex items-center overflow-hidden bg-background"
     >
-      {/* Dot-grid magnetic background */}
-      <canvas
-        ref={dotsRef}
-        className="absolute inset-0 w-full h-full"
-        aria-hidden
-      />
-
       {/* Soft vignette */}
       <div className="absolute inset-0 bg-fade-bottom pointer-events-none" />
 

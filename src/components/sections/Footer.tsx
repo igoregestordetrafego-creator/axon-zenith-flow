@@ -22,8 +22,8 @@ const Footer = () => {
               <li><a href="#servicos" className="hover:text-gold transition-colors story-link">Serviços</a></li>
               <li><a href="#resultados" className="hover:text-gold transition-colors story-link">Resultados</a></li>
               <li><a href="#depoimentos" className="hover:text-gold transition-colors story-link">Depoimentos</a></li>
-              <li><a href="#faq" className="hover:text-gold transition-colors story-link">FAQ</a></li>
               <li><a href="#contato" className="hover:text-gold transition-colors story-link">Contato</a></li>
+              <li><a href="#faq" className="hover:text-gold transition-colors story-link">Perguntas Frequentes</a></li>
             </ul>
           </div>
 
@@ -39,8 +39,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between gap-3 text-cream-dim text-xs">
+        <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-3 text-cream-dim text-xs">
           <p>© 2025 Axon Growth. Todos os direitos reservados.</p>
+          <a href="#faq" className="hover:text-gold transition-colors story-link">
+            Perguntas Frequentes
+          </a>
         </div>
       </div>
     </footer>
