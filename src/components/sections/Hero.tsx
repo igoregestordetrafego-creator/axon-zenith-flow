@@ -54,22 +54,22 @@ const Hero = () => {
             </span>
           </h1>
 
-          <div className="mt-10 max-w-3xl space-y-4 mx-auto">
+          <div className="mt-6 md:mt-10 max-w-3xl space-y-4 mx-auto">
             <p
-              className="text-cream/90 text-lg md:text-xl leading-relaxed font-medium opacity-0"
+              className="text-cream/90 text-base md:text-xl leading-relaxed font-medium opacity-0"
               style={{ animation: "word-rise 0.7s ease-out 0.45s forwards" }}
             >
               Mapeamos, ajustamos e escalamos completamente todos os seus processos
               com foco em resolver gargalos que nunca te mostraram.
             </p>
             <p
-              className="text-cream/90 text-lg md:text-xl leading-relaxed font-medium opacity-0"
+              className="hidden md:block text-cream/90 text-xl leading-relaxed font-medium opacity-0"
               style={{ animation: "word-rise 0.7s ease-out 0.55s forwards" }}
             >
               Tráfego pago é apenas um nó de uma estrutura altamente complexa.
             </p>
             <p
-              className="font-sora italic text-gold/90 text-base md:text-lg opacity-0"
+              className="hidden md:block font-sora italic text-gold/90 text-lg opacity-0"
               style={{ animation: "word-rise 0.7s ease-out 0.7s forwards" }}
             >
               Conte com a Axon para escalar a sua operação, seja ela qual for.
@@ -77,7 +77,7 @@ const Hero = () => {
           </div>
 
           <div
-            className="mt-12 opacity-0"
+            className="mt-8 md:mt-12 opacity-0"
             style={{ animation: "word-rise 0.7s cubic-bezier(0.22,1,0.36,1) 0.8s forwards" }}
           >
             <a
