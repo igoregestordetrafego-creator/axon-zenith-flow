@@ -47,10 +47,10 @@ const MetricCard = ({ metric, active, delay }: { metric: Metric; active: boolean
   return (
     <div
       data-cursor-hover
-      className="metric-card group relative shrink-0 w-[300px] md:w-[340px] flex flex-col justify-end"
+      className="metric-card group relative shrink-0 w-[300px] md:w-[340px] flex flex-col justify-start"
       style={{
         height: "220px",
-        padding: "32px",
+        padding: "28px 32px",
         background: "#111111",
         border: "1px solid #1E1E1E",
         opacity: active ? 1 : 0,
