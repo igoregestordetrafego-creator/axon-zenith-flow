@@ -336,6 +336,23 @@
 }
 
 /* ============================================
+   TESTIMONIALS — mobile sticky card stack
+============================================ */
+@media (max-width: 767px) {
+  .testimonial-card-mobile {
+    position: sticky !important;
+    top: 72px;
+    z-index: calc(var(--card-i, 0) + 2) !important;
+    margin-bottom: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.85) !important;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+}
+
+/* ============================================
    METRICS MARQUEE — infinite auto-scroll
 ============================================ */
 @layer components {
