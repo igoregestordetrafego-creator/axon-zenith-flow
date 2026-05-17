@@ -27,7 +27,7 @@ const Hero = () => {
           >
             <span className="h-px w-10 bg-gold" />
             <span className="text-cream-dim text-xs tracking-[0.3em] uppercase font-medium">
-              Agência de performance digital
+              Performance digital e comercial
             </span>
             <span className="h-px w-10 bg-gold" />
           </div>
