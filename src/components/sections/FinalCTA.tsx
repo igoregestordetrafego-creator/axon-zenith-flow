@@ -4,7 +4,7 @@ import { WHATSAPP_URL } from "@/lib/constants";
 type Line = { text: string; accent?: boolean };
 const TITLE_LINES: Line[][] = [
   [{ text: "A CONCORRÊNCIA" }],
-  [{ text: "JÁ ESTÁ " }, { text: "CRESCENDO", accent: true }],
+  [{ text: "JÁ ESTÁ " }, { text: "CRESCENDO", accent: true }],
   [{ text: "CONOSCO." }],
 ];
 
