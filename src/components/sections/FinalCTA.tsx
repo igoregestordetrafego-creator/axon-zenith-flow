@@ -4,7 +4,7 @@ import { WHATSAPP_URL } from "@/lib/constants";
 type Line = { text: string; accent?: boolean };
 const TITLE_LINES: Line[][] = [
   [{ text: "A CONCORRÊNCIA" }],
-  [{ text: "JÁ ESTÁ " }, { text: "CRESCENDO", accent: true }],
+  [{ text: "JÁ ESTÁ" }, { text: "CRESCENDO", accent: true }],
   [{ text: "CONOSCO." }],
 ];
 
@@ -30,17 +30,19 @@ const FinalCTA = () => {
               {line.map((part, partIdx) => {
                 const globalIdx = TITLE_LINES.slice(0, lineIdx).reduce((a, l) => a + l.length, 0) + partIdx;
                 return (
-                  <span
-                    key={partIdx}
-                    className="inline-block opacity-0"
-                    style={{
-                      animation: visible
-                        ? `word-rise 0.7s cubic-bezier(0.22,1,0.36,1) ${globalIdx * 100}ms forwards`
-                        : "none",
-                      color: part.accent ? "#00C2D4" : "#F5F0E8",
-                    }}
-                  >
-                    {part.text}
+                  <span key={partIdx}>
+                    {partIdx > 0 && <>&nbsp;</>}
+                    <span
+                      className="inline-block opacity-0"
+                      style={{
+                        animation: visible
+                          ? `word-rise 0.7s cubic-bezier(0.22,1,0.36,1) ${globalIdx * 100}ms forwards`
+                          : "none",
+                        color: part.accent ? "#00C2D4" : "#F5F0E8",
+                      }}
+                    >
+                      {part.text}
+                    </span>
                   </span>
                 );
               })}
